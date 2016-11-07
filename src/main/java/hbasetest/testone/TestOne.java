@@ -1,12 +1,5 @@
 package hbasetest.testone;
 
-
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.hbase.HBaseConfiguration;
-import org.apache.hadoop.hbase.HColumnDescriptor;
-import org.apache.hadoop.hbase.HTableDescriptor;
-import org.apache.hadoop.hbase.MasterNotRunningException;
-import org.apache.hadoop.hbase.client.HBaseAdmin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +18,7 @@ public class TestOne {
 
     public static void main(String [] args){
 
+        /*
         try {
             Configuration configuration = HBaseConfiguration.create();
             //configuration.addResource("conf.properties"); //只能add xml 文件
@@ -43,6 +37,11 @@ public class TestOne {
             logger.error("get error: {}",ee);
         }catch (Exception e){
             logger.error("get error: {}",e);
-        }
+        }*/
+
+
+
     }
+
+
 }
