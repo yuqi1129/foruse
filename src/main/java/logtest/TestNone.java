@@ -22,6 +22,7 @@ public class TestNone {
         infoLog.info("we get a info,haha ");
         LOGGER.info("get info");
         LOGGER.error("get error");
+        LOGGER.info("{}","haha");
 
     }
 

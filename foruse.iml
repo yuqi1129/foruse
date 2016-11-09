@@ -49,5 +49,6 @@
     <orderEntry type="library" name="Maven: org.apache.hadoop:hadoop-assemblies:2.0.0-cdh4.2.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.hadoop:hadoop-client:2.0.0-cdh4.2.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.hadoop:hadoop-hdfs:2.0.0-cdh4.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.hbase:hbase:0.94.2-cdh4.2.1" level="project" />
   </component>
 </module>
