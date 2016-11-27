@@ -1,0 +1,1 @@
+{"metric":"yixin_app","tags":{"hostname":"yx15.popo.infra.mail","type":"2"},"timestamp":1475251383000,"value":15237}

@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Properties;
 
 import kafka.admin.AdminUtils;
@@ -32,9 +33,11 @@ public class TestTwo {
 
     public static void main(String [] args){
 
-        //String broker = "kafka0.xs.163.org:9092,kafka1.xs.163.org:9092,kafka2.xs.163.org:9092,kafka3.xs.163.org:9092";
+        String broker = "kafka0.xs.163.org:9092,kafka1.xs.163.org:9092,kafka2.xs.163.org:9092,kafka3.xs.163.org:9092";
 
-        String broker = "db-180.photo.163.org:9092,db-180.photo.163.org:9093,db-180.photo.163.org:9094";
+        //String broker = "db-180.photo.163.org:9092,db-180.photo.163.org:9093,db-180.photo.163.org:9094";
+
+
 
         Properties properties = new Properties();
         properties.put("metadata.broker.list",broker);

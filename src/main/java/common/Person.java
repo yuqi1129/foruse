@@ -14,6 +14,12 @@ public class Person implements Comparable<Person> {
     private String name;
     private Integer id;
 
+    private static final Person person = new Person("good",1);
+
+    public static Person getInstance(){
+        return person;
+    }
+
 
     public Integer getId() {
         return id;

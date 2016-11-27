@@ -11,6 +11,11 @@ import com.rabbitmq.client.Envelope;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+
 /**
  * Created with foruse.
  * User: hzyuqi1
@@ -39,6 +44,15 @@ public class ReceiveOne {
             channel.exchangeDeclare(EXCHANGE_NAME, "topic");
             String queueName = channel.queueDeclare().getQueue();
 
+            BufferedReader bf = new BufferedReader(new InputStreamReader(new FileInputStream(new File("final.txt"))));
+
+            while((queueName = bf.readLine()) != null){
+                channel.queueDelete(queueName);
+                logger.info("delete:" + queueName);
+            }
+
+            /*
+
             String[] routingKeys = new String[]{"*.orange.*"};
 
             for (String string : routingKeys) {
@@ -59,8 +73,10 @@ public class ReceiveOne {
             };
 
             channel.basicConsume(queueName, true, consumer);
+            */
         }catch (Exception e1){
             logger.error("get error: {}",e1);
         }
+
     }
 }

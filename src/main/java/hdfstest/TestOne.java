@@ -12,6 +12,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.net.URI;
 import java.util.Map;
 
 
@@ -33,7 +34,11 @@ public class TestOne {
             Configuration configuration = new Configuration();
             //configuration.set("hbase.zookeeper.quorum", "inspur251.photo.163.org,inspur252.photo.163.org,inspur253.photo.163.org,inspur254.photo.163.org,inspur255.photo.163.org");
             configuration.addResource("hadoop-size-hz-cluster1.xml");
-            FileSystem hdfs = FileSystem.get(configuration);
+            FileSystem hdfs = FileSystem.get(new URI("hdfs://inspur249.photo.163.org:8020"),configuration);
+
+            //Path myPath = new Path("hdfs://inspur249.photo.163.org:8020/datastream/dsdev");
+
+
 
             Path src = new Path("E:\\JavaWorkSpace1\\AvorDemo\\file.txt");
 
