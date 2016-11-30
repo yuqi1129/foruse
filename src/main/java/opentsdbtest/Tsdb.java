@@ -20,5 +20,5 @@ public interface Tsdb {
 
     List<ResultClass> getDataByPost(QueryClass queryClass) ;
 
-    void putDataByPost(List<Tailfile> tailfile);
+    void putDataByPost(List<Tailfile> tailfile,Integer flag);
 }

@@ -1,5 +1,7 @@
 package common;
 
+import scala.Int;
+
 /**
  * Created with foruse.
  * User: hzyuqi1
@@ -14,7 +16,9 @@ public class Tailfile  {
     private String hostname;
     private Long count;
     private String tagName;
-    private String file;
+    private String fileName;
+    private Long inode ;
+    private Integer nodeType;
 
     private Integer type;
     private Long timeStamp;
@@ -63,16 +67,32 @@ public class Tailfile  {
         return timeStamp;
     }
 
-    public String getFile() {
-        return file;
-    }
-
-    public void setFile(String file) {
-        this.file = file;
-    }
-
     public void setTimeStamp(Long timeStamp) {
         this.timeStamp = timeStamp;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public Long getInode() {
+        return inode;
+    }
+
+    public void setInode(Long inode) {
+        this.inode = inode;
+    }
+
+    public Integer getNodeType() {
+        return nodeType;
+    }
+
+    public void setNodeType(Integer nodeType) {
+        this.nodeType = nodeType;
     }
 
     @Override
@@ -82,7 +102,9 @@ public class Tailfile  {
                 ", hostname='" + hostname + '\'' +
                 ", count=" + count +
                 ", tagName='" + tagName + '\'' +
-                ", file='" + file + '\'' +
+                ", fileName='" + fileName + '\'' +
+                ", inode=" + inode +
+                ", nodeType=" + nodeType +
                 ", type=" + type +
                 ", timeStamp=" + timeStamp +
                 '}';

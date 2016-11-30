@@ -146,45 +146,61 @@ public class OpenTsdb implements Tsdb{
         return fi ;
     }
 
-    public void putDataByPost(List<Tailfile> tailfile){
-
+    public void putDataByPost(List<Tailfile> tailfile,Integer flag){
 
         //
         String result = null;
 
         List<Store> storeList = Lists.newArrayList();
         for(Tailfile tailfile1 : tailfile){
+
             Store store = new Store();
+            Store store1 = new Store();
+            Map<String, String> map = Maps.newHashMap();
 
-            //store tagname as metric 以tagname作为metric
-            store.setMetric(tailfile1.getTagName());
+            if (flag == 2 || flag == 3) {
+                store.setMetric(tailfile1.getTagName());
 
-            // store hostname as metric 以hostname 作为metric
-            //store.setMetric(tailfile1.getHostname());
+                store.setTimestamp(tailfile1.getTimeStamp());
+                store.setValue(tailfile1.getCount());
+                map.put("hostname",tailfile1.getHostname());
+                map.put("type",new Integer(tailfile1.getType()).toString());
+                map.put("nodetype",tailfile1.getNodeType().toString());
 
-            store.setTimestamp(tailfile1.getTimeStamp());
-            store.setValue(tailfile1.getCount());
-            Map<String,String> map = Maps.newHashMap();
+            }else if (flag == 1) {
+                // 这是tailfile
+                //store tagname as metric,以tagname作为metric
+                store.setMetric(tailfile1.getTagName());
+                store.setTimestamp(tailfile1.getTimeStamp());
+                store.setValue(tailfile1.getCount());
 
-            //store tagname as metric,以tagname作为metric
-            map.put("hostname",tailfile1.getHostname());// 应改要用到反射功能
+                map.put("hostname",tailfile1.getHostname());// 应改要用到反射功能
+                map.put("filename",tailfile1.getFileName()); //存filename
+                map.put("inode",tailfile1.getInode().toString());
+                map.put("type",tailfile1.getType().toString());
+                map.put("nodetype",tailfile1.getNodeType().toString());
 
-            // store hostname as metric,以hostname 作为metric
-            //map.put("tagname",tailfile1.getTagName());
-
-            map.put("filename",tailfile1.getFile()); //存filename
-
-            map.put("type",tailfile1.getType().toString());
-
+            }
             store.setTags(map);
 
+            store1.setMetric(tailfile1.getHostname());
+            Map<String, String> map1 = Maps.newHashMap();
+            map1.put("type", new Integer(tailfile1.getType()).toString());
+            map1.put("tagname",tailfile1.getTagName());
+            map1.put("nodetype",tailfile1.getNodeType().toString());
+            store1.setTags(map1);
+            store1.setValue(tailfile1.getCount());
+            store1.setTimestamp(tailfile1.getTimeStamp());
 
             storeList.add(store);
+            storeList.add(store1);
+
         }
 
         //System.out.println("storeList:" + storeList);
 
         String string = JSONObject.toJSONString(storeList);
+
 
         try{
             StringEntity s = new StringEntity(string,"UTF-8");

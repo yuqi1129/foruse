@@ -41,8 +41,7 @@ public class TestOne {
     public static void main(String [] args){
 
         String broker = "kafka0.xs.163.org:9092,kafka1.xs.163.org:9092,kafka2.xs.163.org:9092,kafka3.xs.163.org:9092";
-
-        //String broker = "db-180.photo.163.org:9092,db-180.photo.163.org:9093,db-180.photo.163.org:9094";
+        String broker_lt = "datastream0.lt.163.org:9092,datastream1.lt.163.org:9092,datastream2.lt.163.org:9092,datastream3.lt.163.org:9092,datastream4.lt.163.org:9092,datastream5.lt.163.org:9092" ;
 
         Properties properties = new Properties();
         properties.put("metadata.broker.list",broker);
@@ -54,7 +53,7 @@ public class TestOne {
 
         properties.put("request.required.acks",1);
 
-        properties.put("bootstrap.servers",broker);
+        properties.put("bootstrap.servers",broker_lt);
         properties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         properties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
@@ -68,10 +67,9 @@ public class TestOne {
 
         for (long i = 0 ; i < 100 ; i++){
             long runtime = new Date().getTime();
+            final String ip = "192.168.2." + random.nextInt(255);
 
-           final String ip = "192.168.2." + random.nextInt(255);
-
-          final   String msg = runtime + ",www.exampl.com," + ip;
+            final   String msg = runtime + ",www.exampl.com," + ip;
             //logger.info("send key = {},value = {} to kafka",ip,msg);
 
             ProducerRecord record = new ProducerRecord<String,String>("test",0,ip,msg);
@@ -81,6 +79,7 @@ public class TestOne {
                         logger.info("send completed,key={},value={}",ip,msg);
                     }
                 });
+
                 producer.flush();
                 System.out.print(future.get());
             }catch (Exception e){
