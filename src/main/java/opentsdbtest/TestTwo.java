@@ -1,5 +1,7 @@
 package opentsdbtest;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created with foruse.
  * User: hzyuqi1
@@ -10,6 +12,7 @@ package opentsdbtest;
 
 public class TestTwo {
 
+    /*
     public static void main(String [] args){
         Long a = 1479729422L;
         Long b = a - a%3600;
@@ -33,7 +36,53 @@ public class TestTwo {
 
         Long time = 0X57EE8C00L;
         System.out.println(time);
+    }*/
+    private static class One{
+        public Long data = 0L;
+
+        public One(Long data) {
+            this.data = data;
+        }
+
+        public One() {
+        }
+
+        public Long getData() {
+            return data;
+        }
+
+        public void setData(Long data) {
+            this.data = data;
+        }
+    }
+
+    public static void main(String [] args){
+
+        Long a = 0L ;
+        update(a);
+        System.out.println(a);
+        System.out.println(System.currentTimeMillis());
+        try{
+            //TimeUnit.SECONDS.sleep(1);
+            //Thread.currentThread().sleep(1000);
+            //Thread.sleep(1000);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        System.out.println(System.currentTimeMillis());
+
+        One one = new One();
+        update(one);
+        System.out.println(one.getData());
 
 
+    }
+    private static void update(Long a){
+        a = a + 1 ;
+    }
+
+    private static void update(One one){
+        one.setData(2L);
     }
 }

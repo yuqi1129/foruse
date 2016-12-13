@@ -38,13 +38,14 @@ public class TestTwo {
 
     public static void main(String [] args){
 
-        String broker_ = "kafka0.xs.163.org:9092,kafka1.xs.163.org:9092,kafka2.xs.163.org:9092,kafka3.xs.163.org:9092";
+        String broker = "kafka0.xs.163.org:9092,kafka1.xs.163.org:9092,kafka2.xs.163.org:9092,kafka3.xs.163.org:9092";
 
         String broker_lt = "datastream0.lt.163.org:9092,datastream1.lt.163.org:9092,datastream2.lt.163.org:9092,datastream3.lt.163.org:9092,datastream4.lt.163.org:9092,datastream5.lt.163.org:9092";
 
+        String broker_db180 = "db-180.photo.163.org:9092,db-180.photo.163.org:9093,db-180.photo.163.org:9094" ;
 
         Properties properties = new Properties();
-        properties.put("metadata.broker.list",broker_lt);
+        properties.put("metadata.broker.list",broker);
 
         properties.put("serializer.class","kafka.serializer.StringEncoder");
         properties.put("key.serializer.class" , "kakfa.serializer.StringEncoder");
@@ -54,15 +55,15 @@ public class TestTwo {
 
         properties.put("request.required.acks",1);
 
-        properties.put("bootstrap.servers",broker_lt);
+        properties.put("bootstrap.servers",broker);
         properties.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         properties.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 
 
         KafkaConsumer<String,String> kafkaConsumer = new KafkaConsumer<String, String>(properties);
 
-
-        kafkaConsumer.subscribe(Lists.newArrayList("test"), new ConsumerRebalanceListener() {
+        /*
+        kafkaConsumer.subscribe(Lists.newArrayList("datastream.-_-.datastream_kkk_kkk.1"), new ConsumerRebalanceListener() {
             public void onPartitionsRevoked(Collection<TopicPartition> collection) {
 
             }
@@ -70,12 +71,10 @@ public class TestTwo {
             public void onPartitionsAssigned(Collection<TopicPartition> collection) {
 
             }
-        });
+        });*/
 
-
-
-       // TopicPartition topicPartition = new TopicPartition("test",0);
-       // kafkaConsumer.assign(Lists.<TopicPartition>newArrayList(topicPartition));
+        TopicPartition topicPartition = new TopicPartition("datastream.-_-.datastream_kkk_kkk.1",0);
+        kafkaConsumer.assign(Lists.<TopicPartition>newArrayList(topicPartition));
 
 
         //kafkaConsumer.seek(topicPartition,100);
@@ -87,13 +86,14 @@ public class TestTwo {
         System.out.println(kafkaConsumer.assignment());
         System.out.println(kafkaConsumer.subscription());
 
-        kafkaConsumer.partitionsFor("test");
-        for (PartitionInfo partitionInfo : kafkaConsumer.partitionsFor("test")){
+
+        kafkaConsumer.partitionsFor("datastream.-_-.datastream_kkk_kkk.1");
+        for (PartitionInfo partitionInfo : kafkaConsumer.partitionsFor("datastream.-_-.datastream_kkk_kkk.1")){
             System.out.print(partitionInfo.toString());
         }
 
         while(true){
-            ConsumerRecords<String,String> records = kafkaConsumer.poll(10000);
+            ConsumerRecords<String,String> records = kafkaConsumer.poll(1);
 
             if (records == null)
                 continue;

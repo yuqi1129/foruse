@@ -128,5 +128,9 @@
     <orderEntry type="library" name="Maven: org.opentsdb:java-client:1.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.2.4" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.1.40" level="project" />
+    <orderEntry type="library" name="Maven: com.dyuproject.protostuff:protostuff-core:1.0.5" level="project" />
+    <orderEntry type="library" name="Maven: com.dyuproject.protostuff:protostuff-api:1.0.5" level="project" />
+    <orderEntry type="library" name="Maven: com.dyuproject.protostuff:protostuff-runtime:1.0.5" level="project" />
+    <orderEntry type="library" name="Maven: com.dyuproject.protostuff:protostuff-collectionschema:1.0.5" level="project" />
   </component>
 </module>
