@@ -99,6 +99,8 @@ public class StoreThread implements Runnable {
         try {
 
             connection = (Connection) DriverManager.getConnection("jdbc:mysql://127.0.0.1:3307/datastream?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&&autoReconnect=true&failOverReadOnly=false&connectTimeout=600000&socketTimeout=600000","ds","8w?yXNgs;");
+
+            //connection = (Connection) DriverManager.getConnection("jdbc:mysql://127.0.0.1:3308/datastream?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&&autoReconnect=true&failOverReadOnly=false&connectTimeout=600000&socketTimeout=600000","ds_dev","s]k51_(>R");
             Statement statement = (Statement) connection.createStatement();
             Long offset = start.get();
             System.out.println("flag.get() = " + flag.get());
@@ -154,7 +156,7 @@ public class StoreThread implements Runnable {
 
                     list.add(tailfile);
 
-                    if (list.size() == 10) {
+                    if (list.size() == 500) {
                         //System.out.println("insert into opentsdb");
                         openTsdb.putDataByPost(list,flag.get());  //attention,this 1 mean tailfile,2 means dataroute
                         logger.info("we put " + list.size() + " data in it ");

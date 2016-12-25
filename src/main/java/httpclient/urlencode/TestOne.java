@@ -1,5 +1,8 @@
 package httpclient.urlencode;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
@@ -33,6 +36,27 @@ public class TestOne {
         }
 
         System.out.println(encode + " decode value equals:" + china);
+
+        File f = null ;
+        try {
+            f = new File("data.txt");
+            if (!f.exists()) {
+                f.createNewFile();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        System.out.println(f.lastModified());
+        try{
+            OutputStream outputStream = new FileOutputStream(f);
+            outputStream.write("test.txt".getBytes());
+            System.out.println(f.lastModified());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
 
 
     }

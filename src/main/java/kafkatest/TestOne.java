@@ -14,6 +14,7 @@ import org.apache.kafka.common.Metric;
 import org.apache.kafka.common.MetricName;
 import org.apache.kafka.common.PartitionInfo;
 import org.apache.kafka.common.utils.SystemTime;
+import org.jboss.netty.channel.ChannelFutureNotifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,8 +45,9 @@ public class TestOne {
         String broker = "kafka0.xs.163.org:9092,kafka1.xs.163.org:9092,kafka2.xs.163.org:9092,kafka3.xs.163.org:9092";
         String broker_lt = "datastream0.lt.163.org:9092,datastream1.lt.163.org:9092,datastream2.lt.163.org:9092,datastream3.lt.163.org:9092,datastream4.lt.163.org:9092,datastream5.lt.163.org:9092" ;
         String broker_db180 = "db-180.photo.163.org:9092,db-180.photo.163.org:9093,db-180.photo.163.org:9094" ;
+        String broker_db179 = "db-179.photo.163.org:9092" ;
         Properties properties = new Properties();
-        properties.put("metadata.broker.list",broker_db180);
+        properties.put("metadata.broker.list",broker_db179);
 
         properties.put("serializer.class","kafka.serializer.StringEncoder");
         properties.put("key.serializer.class" , "kakfa.serializer.StringEncoder");
@@ -54,7 +56,7 @@ public class TestOne {
 
         properties.put("request.required.acks",1);
 
-        properties.put("bootstrap.servers",broker_db180);
+        properties.put("bootstrap.servers",  broker_db179);
         properties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         properties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 

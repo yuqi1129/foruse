@@ -1,7 +1,14 @@
 package hbasetest.testone;
 
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.HColumnDescriptor;
+import org.apache.hadoop.hbase.HTableDescriptor;
+import org.apache.hadoop.hbase.client.HBaseAdmin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 
 
 /**
@@ -15,6 +22,18 @@ import org.slf4j.LoggerFactory;
 public class TestOne {
 
     private static final Logger logger = LoggerFactory.getLogger(TestOne.class);
+    private static HBaseAdmin hBaseAdmin;
+
+    static {
+        try{
+            Configuration configuration = HBaseConfiguration.create();
+            configuration.set("hbase.zookeeper.quorum","app-68.photo.163.org:2182");
+            hBaseAdmin = new HBaseAdmin(configuration);
+        }catch (Exception e){
+            System.out.println(e);
+            logger.error("get error {}",e);
+        }
+    }
 
     public static void main(String [] args){
 
@@ -39,8 +58,43 @@ public class TestOne {
             logger.error("get error: {}",e);
         }*/
 
+        String [] columns = new String[]{"agen","name"};
+        try {
+            createTable("yuqi_test", columns);
+        }catch (Exception e){
+            System.out.println(e);
+            logger.error("get error {}",e);
+        }
 
 
+    }
+
+
+    private static void createTable(String tableName,String [] columns) throws IOException{
+
+        dropTable(tableName);
+        HTableDescriptor hTableDescriptor = new HTableDescriptor(tableName);
+
+        for (String column : columns){
+            HColumnDescriptor columnDescriptor = new HColumnDescriptor(column);
+            hTableDescriptor.addFamily(columnDescriptor);
+        }
+
+        hBaseAdmin.createTable(hTableDescriptor);
+        System.out.println("create table success!");
+
+    }
+
+
+    private static void dropTable(String tableName){
+        try {
+            if (hBaseAdmin.tableExists(tableName)) {
+                hBaseAdmin.disableTable(tableName);
+                hBaseAdmin.deleteTable(tableName);
+            }
+        }catch (Exception e){
+            logger.error("get error {}",e);
+        }
     }
 
 

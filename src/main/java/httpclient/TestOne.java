@@ -18,6 +18,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHttpResponse;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EncodingUtils;
+import org.apache.http.util.EntityUtils;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,7 +69,7 @@ public class TestOne {
                     b = new byte[(int) len];
                 }
                 entity.getContent().read(b,0,(int)len);
-                System.out.println(new String(b,"UTF-8"));
+                //System.out.println(new String(b,"UTF-8"));
 
             }
 
@@ -97,9 +98,15 @@ public class TestOne {
 
             }
 
+            response = httpClient.execute(get);
+            if (response.getStatusLine().getStatusCode() / 100 == 2){
+                System.out.println("We get " + EntityUtils.toString(response.getEntity(),"UTF-8"));
+                System.out.println("end");
+            }
 
 
         }catch(Exception e){
+            System.out.println(e);
             logger.error("get errror: {}",e);
         }
     }

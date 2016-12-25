@@ -242,6 +242,13 @@
         </dependency>
 
 
+        <!-- https://mvnrepository.com/artifact/org.anarres.lzo/lzo-hadoop -->
+        <dependency>
+            <groupId>org.anarres.lzo</groupId>
+            <artifactId>lzo-hadoop</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
 
 
 

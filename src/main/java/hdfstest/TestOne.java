@@ -36,10 +36,6 @@ public class TestOne {
             configuration.addResource("hadoop-size-hz-cluster1.xml");
             FileSystem hdfs = FileSystem.get(new URI("hdfs://inspur249.photo.163.org:8020"),configuration);
 
-            //Path myPath = new Path("hdfs://inspur249.photo.163.org:8020/datastream/dsdev");
-
-
-
             Path src = new Path("E:\\JavaWorkSpace1\\AvorDemo\\file.txt");
 
             if (debug){
