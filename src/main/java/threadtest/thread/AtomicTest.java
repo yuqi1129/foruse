@@ -6,7 +6,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.concurrent.atomic.LongAdder;
+//import java.util.concurrent.atomic.LongAdder;
 
 /**
  * Created with foruse.
@@ -22,7 +22,7 @@ public class AtomicTest {
     private static final Long Times = 1000000000L;
 
     private static Object object = new Object();
-    private static final LongAdder lacount = new LongAdder();
+    ///private static final LongAdder lacount = new LongAdder();
     private static Long start = 0L ;
 
     private static CountDownLatch countDownLatch1 = new CountDownLatch(Runtime.getRuntime().availableProcessors());
@@ -86,7 +86,7 @@ public class AtomicTest {
 
     }
 
-
+    /*
     public static void testAddr(){
         ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
         StopWatch stopWatch = new StopWatch();
@@ -114,11 +114,11 @@ public class AtomicTest {
         System.out.println("Longaddr use:" + String.valueOf(stopWatch.getTime()) + " millseconds");
         executorService.shutdown();
     }
-
+    */
     public static void main(String [] args){
         AtomicTest.testLock();
         AtomicTest.start = 0L ;
-        AtomicTest.testAddr();
+       // AtomicTest.testAddr();
         AtomicTest.start = 0L ;
         AtomicTest.testAtomic();
     }

@@ -3,6 +3,7 @@ package hbasetest.testone;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.HColumnDescriptor;
+
 import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.client.HBaseAdmin;
 import org.slf4j.Logger;
@@ -27,11 +28,14 @@ public class TestOne {
     static {
         try{
             Configuration configuration = HBaseConfiguration.create();
-            configuration.set("hbase.zookeeper.quorum","app-68.photo.163.org:2182");
+            configuration.set("hbase.zookeeper.quorum","node1");
+
+            System.out.println("before");
             hBaseAdmin = new HBaseAdmin(configuration);
+            System.out.println("hBaseAdmin:" + hBaseAdmin);
         }catch (Exception e){
             System.out.println(e);
-            logger.error("get error {}",e);
+            //logger.error("get error {}",e);
         }
     }
 
@@ -58,21 +62,25 @@ public class TestOne {
             logger.error("get error: {}",e);
         }*/
 
-        String [] columns = new String[]{"agen","name"};
+
+        String [] columns = new String[]{"age","name"};
         try {
-            createTable("yuqi_test", columns);
+            createTable("good", columns);
         }catch (Exception e){
             System.out.println(e);
             logger.error("get error {}",e);
         }
+
+        System.out.println("Hello,world!");
 
 
     }
 
 
     private static void createTable(String tableName,String [] columns) throws IOException{
-
+        System.out.println("iii");
         dropTable(tableName);
+        System.out.println("222");
         HTableDescriptor hTableDescriptor = new HTableDescriptor(tableName);
 
         for (String column : columns){
@@ -80,7 +88,10 @@ public class TestOne {
             hTableDescriptor.addFamily(columnDescriptor);
         }
 
+        System.out.println("3");
+
         hBaseAdmin.createTable(hTableDescriptor);
+        System.out.println("4");
         System.out.println("create table success!");
 
     }
@@ -89,6 +100,7 @@ public class TestOne {
     private static void dropTable(String tableName){
         try {
             if (hBaseAdmin.tableExists(tableName)) {
+                System.out.println("table exist");
                 hBaseAdmin.disableTable(tableName);
                 hBaseAdmin.deleteTable(tableName);
             }

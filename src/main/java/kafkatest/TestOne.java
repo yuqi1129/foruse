@@ -2,8 +2,8 @@ package kafkatest;
 
 import com.google.common.base.Preconditions;
 
+import com.google.common.collect.Lists;
 import org.apache.commons.lang.time.StopWatch;
-import org.apache.hadoop.thirdparty.guava.common.collect.Lists;
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
@@ -99,6 +99,7 @@ public class TestOne {
         */
 
         List<ProducerRecord> producerRecordList = Lists.newArrayList();
+
 
         for (int i = 0 ; i < 10000 ; i++){
             ProducerRecord producerRecord = new ProducerRecord("topic111",0,"192.168.3." + new Random().nextInt(255),"www.ifeng.com==" + new Integer(i).toString());

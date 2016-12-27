@@ -11,7 +11,6 @@ import com.sun.scenario.effect.Offset;
 
 import common.Tailfile;
 
-import org.apache.hadoop.hbase.ipc.Delayable;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.HttpClient;
 
