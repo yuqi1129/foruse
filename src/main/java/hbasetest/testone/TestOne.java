@@ -1,15 +1,19 @@
 package hbasetest.testone;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.HColumnDescriptor;
 
 import org.apache.hadoop.hbase.HTableDescriptor;
-import org.apache.hadoop.hbase.client.HBaseAdmin;
+import org.apache.hadoop.hbase.client.*;
+import org.apache.hadoop.hbase.util.Bytes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
 
 
 /**
@@ -24,10 +28,11 @@ public class TestOne {
 
     private static final Logger logger = LoggerFactory.getLogger(TestOne.class);
     private static HBaseAdmin hBaseAdmin;
+    private static Configuration configuration;
 
     static {
         try{
-            Configuration configuration = HBaseConfiguration.create();
+            configuration = HBaseConfiguration.create();
             configuration.set("hbase.zookeeper.quorum","node1");
 
             System.out.println("before");
@@ -38,6 +43,8 @@ public class TestOne {
             //logger.error("get error {}",e);
         }
     }
+
+    private static String rowKey = "rowKey";
 
     public static void main(String [] args){
 
@@ -72,6 +79,59 @@ public class TestOne {
         }
 
         System.out.println("Hello,world!");
+        try {
+            HTable hTable = new HTable(configuration, "people");
+            HColumnDescriptor [] hColumnDescriptors = hTable.getTableDescriptor().getColumnFamilies();
+
+            for (int i= 41 ; i< 50 ;i++){
+                Put put = new Put(String.valueOf(i).getBytes());
+                for (HColumnDescriptor hColumnDescriptor: hColumnDescriptors){
+                    put.addColumn(hColumnDescriptor.getName(),"test".getBytes(),String.valueOf(i).getBytes());
+                }
+
+                hTable.put(put);
+                System.out.println("put " + i  + " succeed");
+
+
+            }
+
+            Get get = new Get("1".getBytes());
+            get.addColumn("name".getBytes(),"test".getBytes());
+            Result result = hTable.get(get);
+            System.out.println(result.getMap());
+
+
+            System.out.println("row [0] = " + String.valueOf(result.getRow().toString()));
+
+            for (Cell cell :result.rawCells()){
+                byte [] value = cell.getValueArray();
+                byte [] family = cell.getFamilyArray();
+                byte [] quailfer = cell.getQualifierArray();
+
+                for (byte b : value){
+                    System.out.println("value:" + String.valueOf(b));
+                }
+
+                for (byte b : family){
+                    System.out.println("family:" + String.valueOf(b));
+                }
+
+                for (byte b : quailfer){
+                    System.out.println("quailfer:" + String.valueOf(b));
+                }
+
+
+
+            }
+
+
+
+
+        }catch (Exception e){
+            e.getMessage();
+        }
+
+
 
 
     }
@@ -107,6 +167,43 @@ public class TestOne {
         }catch (Exception e){
             logger.error("get error {}",e);
         }
+    }
+
+
+    public static HTable  getTable(String tableName) throws IOException{
+        return new HTable(configuration,tableName);
+    }
+
+
+
+    public static void insert(String tableName, Map<String, String >map) throws Exception{
+        HTable hTable = getTable(tableName);
+        byte [] row1 = Bytes.toBytes(rowKey);
+
+        Put put = new Put(row1);
+        for (String name : map.keySet()){
+            byte [] value = Bytes.toBytes(map.get(name));
+
+            String [] col = name.split(":");
+
+            if (col.length == 2){
+                byte [] family = col[0].getBytes();
+                byte []  qualifier = col[1].getBytes();
+                put.addColumn(family,qualifier,value);
+            }
+        }
+
+        hTable.put(put);
+
+        Get get = new Get(rowKey.getBytes());
+        Result result = hTable.get(get);
+
+        System.out.println(get);
+    }
+
+    private static void createtable(String name){
+        HConnectable connectable = HConnectionManager.createConnection();
+        // void 
     }
 
 

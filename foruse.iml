@@ -21,7 +21,7 @@
     <orderEntry type="library" name="Maven: org.apache.curator:curator-framework:2.8.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.curator:curator-client:2.8.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.curator:curator-recipes:2.8.0" level="project" />
-    <orderEntry type="library" name="Maven: com.google.guava:guava:19.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.guava:guava:16.0" level="project" />
     <orderEntry type="library" name="Maven: com.lmax:disruptor:3.3.5" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.3.6" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.3.3" level="project" />
