@@ -33,11 +33,12 @@ public class TestOne {
     static {
         try{
             configuration = HBaseConfiguration.create();
-            configuration.set("hbase.zookeeper.quorum","node1");
+            configuration.set("hbase.zookeeper.quorum","127.0.0.1");
+            configuration.set("hbase.zookeeper.property.clientPort", "2182");
 
             System.out.println("before");
             hBaseAdmin = new HBaseAdmin(configuration);
-            System.out.println("hBaseAdmin:" + hBaseAdmin);
+            System.out.println("hBaseAdmin:" + hBaseAdmin.getConfiguration().get("hbase.zookeeper.quorum"));
         }catch (Exception e){
             System.out.println(e);
             //logger.error("get error {}",e);
@@ -69,21 +70,24 @@ public class TestOne {
             logger.error("get error: {}",e);
         }*/
 
-
+        /*
         String [] columns = new String[]{"age","name"};
         try {
-            createTable("good", columns);
+            createTable("nice", columns);
         }catch (Exception e){
             System.out.println(e);
             logger.error("get error {}",e);
-        }
+        }*/
 
         System.out.println("Hello,world!");
         try {
             HTable hTable = new HTable(configuration, "people");
-            HColumnDescriptor [] hColumnDescriptors = hTable.getTableDescriptor().getColumnFamilies();
+            System.out.println("1");
 
-            for (int i= 41 ; i< 50 ;i++){
+            System.out.println(hTable.getTableDescriptor());
+            HColumnDescriptor [] hColumnDescriptors = hTable.getTableDescriptor().getColumnFamilies();
+            System.out.println("1");
+            for (int i= 51 ; i< 60 ;i++){
                 Put put = new Put(String.valueOf(i).getBytes());
                 for (HColumnDescriptor hColumnDescriptor: hColumnDescriptors){
                     put.addColumn(hColumnDescriptor.getName(),"test".getBytes(),String.valueOf(i).getBytes());
@@ -91,10 +95,8 @@ public class TestOne {
 
                 hTable.put(put);
                 System.out.println("put " + i  + " succeed");
-
-
             }
-
+            System.out.println("3");
             Get get = new Get("1".getBytes());
             get.addColumn("name".getBytes(),"test".getBytes());
             Result result = hTable.get(get);
@@ -128,7 +130,7 @@ public class TestOne {
 
 
         }catch (Exception e){
-            e.getMessage();
+            System.out.println(e);
         }
 
 
@@ -202,7 +204,11 @@ public class TestOne {
     }
 
     private static void createtable(String name){
-        HConnectable connectable = HConnectionManager.createConnection();
+        try {
+           ///
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         // void 
     }
 
