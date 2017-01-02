@@ -255,6 +255,14 @@
             <version>1.0.0</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.apache.mahout/mahout-core -->
+        <dependency>
+            <groupId>org.apache.mahout</groupId>
+            <artifactId>mahout-core</artifactId>
+            <version>0.9</version>
+        </dependency>
+
+
 
 
 
@@ -287,6 +295,10 @@
            要加上以上插件，才能正常运行
         -->
     </build>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+    </properties>
 
 
 </project>

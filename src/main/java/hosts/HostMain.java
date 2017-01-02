@@ -8,6 +8,7 @@ import org.apache.commons.lang.time.StopWatch;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
 import org.omg.SendingContext.RunTime;
@@ -98,34 +99,24 @@ public class HostMain {
                             builder.append(segment[0]).append(".").append(segment[1]).
                                     append(".").append(String.valueOf(i)).append(".").append(String.valueOf(j));
                             //getTime(builder.toString());
+                            //isValid(builder.toString());
 
-                            if (threadPoolExecutor.getQueue().size() > 100){
+                            while(threadPoolExecutor.getQueue().size() > 100){
                                 try{
-                                    Thread.currentThread().sleep(10000);
+                                    Thread.currentThread().sleep(1000);
                                 }catch (Exception e){
                                     e.printStackTrace();
                                 }
+                            }
 
-                                if (threadPoolExecutor.getQueue().size() < 100){
-                                    threadPoolExecutor.execute(new Runnable() {
-                                        public void run() {
-                                            isValid(builder.toString());
-                                        }
-                                    });
+                            threadPoolExecutor.execute(new Runnable() {
+                                public void run() {
+                                    isValid(builder.toString());
                                 }
-                            }else {
-                                threadPoolExecutor.execute(new Runnable() {
-                                    public void run() {
-                                        isValid(builder.toString());
-                                    }
-                                });
-                            }
+                            });
 
-                            try{
-                                Thread.currentThread().sleep(1000);
-                            }catch (Exception e){
-                                e.printStackTrace();
-                            }
+
+
 
                         }
                     }
@@ -137,34 +128,22 @@ public class HostMain {
                                 append(".").append(segment[2]).append(".").append(String.valueOf(i));
 
                         //getTime(builder.toString());
+                        //isValid(builder.toString());
 
-                        if (threadPoolExecutor.getQueue().size() > 100){
+                        while(threadPoolExecutor.getQueue().size() > 100){
                             try{
-                                Thread.currentThread().sleep(10000);
+                                Thread.currentThread().sleep(1000);
                             }catch (Exception e){
                                 e.printStackTrace();
                             }
+                        }
 
-                            if (threadPoolExecutor.getQueue().size() < 100){
-                                threadPoolExecutor.execute(new Runnable() {
-                                    public void run() {
-                                        isValid(builder.toString());
-                                    }
-                                });
+                        threadPoolExecutor.execute(new Runnable() {
+                            public void run() {
+                                isValid(builder.toString());
                             }
-                        }else {
-                            threadPoolExecutor.execute(new Runnable() {
-                                public void run() {
-                                    isValid(builder.toString());
-                                }
-                            });
-                        }
+                        });
 
-                        try{
-                            Thread.currentThread().sleep(1000);
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
 
                     }
                 }
@@ -223,6 +202,8 @@ public class HostMain {
         System.out.println("we start to process:" + hostname);
         try{
             HttpGet httpGet = new HttpGet("http://" + hostname);
+            RequestConfig requestConfig = RequestConfig.custom().setConnectionRequestTimeout(5000).setConnectTimeout(5000).setSocketTimeout(5000).build();
+            httpGet.setConfig(requestConfig);
             StopWatch stopWatch = new StopWatch();
             stopWatch.start();
 
@@ -240,7 +221,7 @@ public class HostMain {
             }
             System.out.println("end to process:" + hostname);
         }catch (Exception e){
-
+            e.printStackTrace();
         }
     }
 

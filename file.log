@@ -9606,3 +9606,75 @@ java.net.ConnectException: Connection refused: no further information
 	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:739)
 	at org.apache.zookeeper.ClientCnxnSocketNIO.doTransport(ClientCnxnSocketNIO.java:361)
 	at org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1141)
+2017-01-02 15:04:44,246 0    INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Creating FileDataModel for file data\mahout\test.csv
+2017-01-02 15:04:44,297 51   INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Reading file info...
+2017-01-02 15:04:44,309 63   INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Read lines: 21
+2017-01-02 15:04:44,327 81   INFO  org.apache.mahout.cf.taste.impl.model.GenericDataModel -Processed 5 users
+2017-01-02 15:06:13,508 0    INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Creating FileDataModel for file data\mahout\test.csv
+2017-01-02 15:06:13,537 29   INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Reading file info...
+2017-01-02 15:06:13,543 35   INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Read lines: 21
+2017-01-02 15:06:13,552 44   INFO  org.apache.mahout.cf.taste.impl.model.GenericDataModel -Processed 5 users
+2017-01-02 15:06:22,966 0    INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Creating FileDataModel for file data\mahout\test.csv
+2017-01-02 15:06:22,995 29   INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Reading file info...
+2017-01-02 15:06:23,000 34   INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Read lines: 21
+2017-01-02 15:06:23,010 44   INFO  org.apache.mahout.cf.taste.impl.model.GenericDataModel -Processed 5 users
+2017-01-02 15:09:51,744 0    INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Creating FileDataModel for file data\mahout\test.csv
+2017-01-02 15:09:51,776 32   INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Reading file info...
+2017-01-02 15:09:51,782 38   INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Read lines: 21
+2017-01-02 15:09:51,792 48   INFO  org.apache.mahout.cf.taste.impl.model.GenericDataModel -Processed 5 users
+2017-01-02 15:33:34,570 0    INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Creating FileDataModel for file data\mahout\test.csv
+2017-01-02 15:33:34,601 31   INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Reading file info...
+2017-01-02 15:33:34,607 37   INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Read lines: 21
+2017-01-02 15:33:34,619 49   INFO  org.apache.mahout.cf.taste.impl.model.GenericDataModel -Processed 5 users
+2017-01-02 15:33:34,651 81   INFO  org.apache.mahout.cf.taste.impl.eval.AbstractDifferenceRecommenderEvaluator -Beginning evaluation using 0.7 of FileDataModel[dataFile:E:\JavaWorkSpace1\foruse\data\mahout\test.csv]
+2017-01-02 15:33:34,652 82   INFO  org.apache.mahout.cf.taste.impl.model.GenericDataModel -Processed 2 users
+2017-01-02 15:33:34,671 101  INFO  org.apache.mahout.cf.taste.impl.eval.AbstractDifferenceRecommenderEvaluator -Beginning evaluation of 2 users
+2017-01-02 15:33:34,674 104  INFO  org.apache.mahout.cf.taste.impl.eval.AbstractDifferenceRecommenderEvaluator -Starting timing of 2 tasks in 4 threads
+2017-01-02 15:33:34,711 141  INFO  org.apache.mahout.cf.taste.impl.eval.StatsCallable -Average time per recommendation: 1ms
+2017-01-02 15:33:34,711 141  INFO  org.apache.mahout.cf.taste.impl.eval.StatsCallable -Approximate memory used: 17MB / 127MB
+2017-01-02 15:33:34,711 141  INFO  org.apache.mahout.cf.taste.impl.eval.StatsCallable -Unable to recommend in 4 cases
+2017-01-02 15:33:34,713 143  INFO  org.apache.mahout.cf.taste.impl.eval.AbstractDifferenceRecommenderEvaluator -Evaluation result: NaN
+2017-01-02 15:34:47,426 0    INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Creating FileDataModel for file data\mahout\test.csv
+2017-01-02 15:34:47,457 31   INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Reading file info...
+2017-01-02 15:34:47,462 36   INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Read lines: 21
+2017-01-02 15:34:47,472 46   INFO  org.apache.mahout.cf.taste.impl.model.GenericDataModel -Processed 5 users
+2017-01-02 15:34:47,482 56   INFO  org.apache.mahout.cf.taste.impl.eval.AbstractDifferenceRecommenderEvaluator -Beginning evaluation using 0.7 of FileDataModel[dataFile:E:\JavaWorkSpace1\foruse\data\mahout\test.csv]
+2017-01-02 15:34:47,483 57   INFO  org.apache.mahout.cf.taste.impl.model.GenericDataModel -Processed 5 users
+2017-01-02 15:34:47,491 65   INFO  org.apache.mahout.cf.taste.impl.eval.AbstractDifferenceRecommenderEvaluator -Beginning evaluation of 4 users
+2017-01-02 15:34:47,493 67   INFO  org.apache.mahout.cf.taste.impl.eval.AbstractDifferenceRecommenderEvaluator -Starting timing of 4 tasks in 4 threads
+2017-01-02 15:34:47,507 81   INFO  org.apache.mahout.cf.taste.impl.eval.StatsCallable -Average time per recommendation: 1ms
+2017-01-02 15:34:47,507 81   INFO  org.apache.mahout.cf.taste.impl.eval.StatsCallable -Approximate memory used: 18MB / 127MB
+2017-01-02 15:34:47,507 81   INFO  org.apache.mahout.cf.taste.impl.eval.StatsCallable -Unable to recommend in 9 cases
+2017-01-02 15:34:47,507 81   INFO  org.apache.mahout.cf.taste.impl.eval.AbstractDifferenceRecommenderEvaluator -Evaluation result: NaN
+2017-01-02 16:46:11,674 0    INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Creating FileDataModel for file data\mahout\test.csv
+2017-01-02 16:46:11,713 39   INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Reading file info...
+2017-01-02 16:46:11,718 44   INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Read lines: 21
+2017-01-02 16:46:11,728 54   INFO  org.apache.mahout.cf.taste.impl.model.GenericDataModel -Processed 5 users
+2017-01-02 16:46:26,227 0    INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Creating FileDataModel for file data\mahout\test.csv
+2017-01-02 16:46:26,293 66   INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Reading file info...
+2017-01-02 16:46:26,298 71   INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Read lines: 21
+2017-01-02 16:46:26,310 83   INFO  org.apache.mahout.cf.taste.impl.model.GenericDataModel -Processed 5 users
+2017-01-02 17:24:31,689 0    INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Creating FileDataModel for file data\mahout\test.csv
+2017-01-02 17:24:31,719 30   INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Reading file info...
+2017-01-02 17:24:31,724 35   INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Read lines: 21
+2017-01-02 17:24:31,735 46   INFO  org.apache.mahout.cf.taste.impl.model.GenericDataModel -Processed 5 users
+2017-01-02 17:24:31,766 77   INFO  org.apache.mahout.cf.taste.impl.eval.AbstractDifferenceRecommenderEvaluator -Beginning evaluation using 0.7 of FileDataModel[dataFile:E:\JavaWorkSpace1\foruse\data\mahout\test.csv]
+2017-01-02 17:24:31,767 78   INFO  org.apache.mahout.cf.taste.impl.model.GenericDataModel -Processed 5 users
+2017-01-02 17:24:31,775 86   INFO  org.apache.mahout.cf.taste.impl.eval.AbstractDifferenceRecommenderEvaluator -Beginning evaluation of 4 users
+2017-01-02 17:24:31,778 89   INFO  org.apache.mahout.cf.taste.impl.eval.AbstractDifferenceRecommenderEvaluator -Starting timing of 4 tasks in 4 threads
+2017-01-02 17:24:31,782 93   INFO  org.apache.mahout.cf.taste.impl.eval.StatsCallable -Average time per recommendation: 1ms
+2017-01-02 17:24:31,782 93   INFO  org.apache.mahout.cf.taste.impl.eval.StatsCallable -Approximate memory used: 19MB / 127MB
+2017-01-02 17:24:31,782 93   INFO  org.apache.mahout.cf.taste.impl.eval.StatsCallable -Unable to recommend in 9 cases
+2017-01-02 17:24:31,782 93   INFO  org.apache.mahout.cf.taste.impl.eval.AbstractDifferenceRecommenderEvaluator -Evaluation result: NaN
+2017-01-02 17:24:47,129 0    INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Creating FileDataModel for file data\mahout\test.csv
+2017-01-02 17:24:47,171 42   INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Reading file info...
+2017-01-02 17:24:47,185 56   INFO  org.apache.mahout.cf.taste.impl.model.file.FileDataModel -Read lines: 21
+2017-01-02 17:24:47,195 66   INFO  org.apache.mahout.cf.taste.impl.model.GenericDataModel -Processed 5 users
+2017-01-02 17:24:47,204 75   INFO  org.apache.mahout.cf.taste.impl.eval.AbstractDifferenceRecommenderEvaluator -Beginning evaluation using 0.5 of FileDataModel[dataFile:E:\JavaWorkSpace1\foruse\data\mahout\test.csv]
+2017-01-02 17:24:47,205 76   INFO  org.apache.mahout.cf.taste.impl.model.GenericDataModel -Processed 4 users
+2017-01-02 17:24:47,213 84   INFO  org.apache.mahout.cf.taste.impl.eval.AbstractDifferenceRecommenderEvaluator -Beginning evaluation of 3 users
+2017-01-02 17:24:47,215 86   INFO  org.apache.mahout.cf.taste.impl.eval.AbstractDifferenceRecommenderEvaluator -Starting timing of 3 tasks in 4 threads
+2017-01-02 17:24:47,218 89   INFO  org.apache.mahout.cf.taste.impl.eval.StatsCallable -Average time per recommendation: 1ms
+2017-01-02 17:24:47,218 89   INFO  org.apache.mahout.cf.taste.impl.eval.StatsCallable -Approximate memory used: 18MB / 127MB
+2017-01-02 17:24:47,218 89   INFO  org.apache.mahout.cf.taste.impl.eval.StatsCallable -Unable to recommend in 6 cases
+2017-01-02 17:24:47,218 89   INFO  org.apache.mahout.cf.taste.impl.eval.AbstractDifferenceRecommenderEvaluator -Evaluation result: NaN

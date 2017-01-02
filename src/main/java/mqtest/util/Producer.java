@@ -1,6 +1,5 @@
 package mqtest.util;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 import org.apache.commons.lang.SerializationUtils;
 import org.slf4j.Logger;
