@@ -54,9 +54,9 @@ public class OpenTsdb implements Tsdb{
 
     private static HttpClient httpClient = HttpClients.createDefault();
 
-    private static HttpPost httpPost = new HttpPost("http://app-68.photo.163.org:20000/api/put");
+    private static HttpPost httpPost = new HttpPost("http://app-68.photo.163.org:20001/api/put");
 
-    private static HttpPost httpPost1 = new HttpPost("http://app-68.photo.163.org:20000/api/query");
+    private static HttpPost httpPost1 = new HttpPost("http://app-68.photo.163.org:20001/api/query");
 
     public List<ResultClass>  getDataByGet(String metric,Integer type,Long startTime,Long endTime){
         return null;

@@ -27,10 +27,10 @@ public class TestOne {
 
     public static void main(String [] args){
         try {
-            DataModel model = new FileDataModel(new File("data/mahout/test.csv"));
+            DataModel model = new FileDataModel(new File("src/main/java/hadooprelative/mahout/data/data.txt"));
 
             UserSimilarity similarity = new PearsonCorrelationSimilarity(model,Weighting.WEIGHTED);
-            UserNeighborhood neighborhood = new NearestNUserNeighborhood(2,similarity,model);
+            UserNeighborhood neighborhood = new NearestNUserNeighborhood(10,similarity,model);
 
             Recommender recommender = new GenericUserBasedRecommender(model,neighborhood,similarity);
 

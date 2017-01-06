@@ -1,3 +1,4 @@
+hadooprelative\mahout\two\HandleItem.class
 threadtest\thread\AtomicTest$1.class
 main\ThreadLocalTest$Myrun.class
 googlecommon\preconditions\TestOne.class
@@ -7,6 +8,7 @@ opentsdbtest\TestTwo$One.class
 threadtest\thread\CycliBar.class
 ZookeeperTest\MainFunctiojn$2.class
 main\MppTest.class
+hadooprelative\mahout\two\UserVectorToCocurrenceMapper.class
 hosts\HostMain$2.class
 disruptor\TestOne$2.class
 threadtest\thread\CycliBar$1.class
@@ -18,6 +20,7 @@ threadtest\thread\SynchronizeTest.class
 main\Mysql.class
 mqtest\util\testtwo\ReceiveOne.class
 jvm\ChapterTwo\TestOne.class
+hadooprelative\mahout\three\MovieToUserVectorReducer.class
 common\Tailfile.class
 protostuff\TestOne.class
 threadtest\thread\CallTest$MyCall.class
@@ -32,6 +35,7 @@ mqtest\util\testone\ConsumerTest.class
 httpclienttest\testone\TestOne.class
 ZookeeperTest\MainFunctionTwo$1.class
 hadooprelative\mahout\one\TestTwo.class
+hadooprelative\mahout\three\MovieToItemPerfMapper.class
 threadtest\thread\CompleteServiceTest$AddSum.class
 opentsdbtest\OpenTsdb.class
 googlecommon\hash\TestHash.class
@@ -40,6 +44,7 @@ mqtest\util\testtwo\TopicSend.class
 threadtest\thread\CompleteServiceTest$1.class
 disruptor\TestOne$1.class
 threadtest\thread\AtomicTest$2.class
+hadooprelative\mahout\three\HandleUser.class
 main\MppTest$Myrun.class
 main\ThreadLocalTest.class
 ZookeeperTest\MainFunctiojn$1.class
@@ -65,6 +70,7 @@ threadtest\thread\SynchronizedTest$1.class
 threadtest\thread\ExchageTest$1.class
 hosts\HostMain$1.class
 ZookeeperTest\MainFunctiojn.class
+hadooprelative\mahout\one\HandlerData.class
 opentsdbtest\storage\TailfileClass.class
 threadtest\thread\LinkedBlockingQueueTest.class
 opentsdbtest\Tsdb.class
@@ -74,6 +80,7 @@ disruptor\TestOne$3.class
 threadtest\threadlocal\MainTest.class
 opentsdbtest\OpenTSDBQuery.class
 other\EnvironmentTest.class
+hadooprelative\mahout\two\UserVectorToCocurrenceReducer.class
 opentsdbtest\TestTwo.class
 threadtest\thread\Phase$Test.class
 jvm\TestOne.class
@@ -99,6 +106,7 @@ threadtest\thread\CompleteServiceTest.class
 threadtest\thread\CallTest.class
 mqtest\util\Producer.class
 other\ListTest.class
+other\FileReaderTest.class
 commontest\TestOne.class
 threadtest\thread\ExchageTest.class
 hadooprelative\mahout\one\TestOne.class

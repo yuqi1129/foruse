@@ -221,7 +221,7 @@ public class HostMain {
             }
             System.out.println("end to process:" + hostname);
         }catch (Exception e){
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 

@@ -90,9 +90,9 @@ public class TestOne {
             //threadPoolExecutor.submit(new StoreThread(17140000L,20000000L,openTsdb,flag));
             //threadPoolExecutor.submit(new StoreThread(25280000L,30000000L,openTsdb,flag));
 
-            threadPoolExecutor.submit(new StoreThread(0L,50000L,openTsdb,flag));
-            threadPoolExecutor.submit(new StoreThread(60000L,100000L,openTsdb,flag));
-            threadPoolExecutor.submit(new StoreThread(110000L,150000L,openTsdb,flag));
+            threadPoolExecutor.submit(new StoreThread(0L,20000L,openTsdb,flag));
+            threadPoolExecutor.submit(new StoreThread(20001L,30000L,openTsdb,flag));
+            threadPoolExecutor.submit(new StoreThread(30001L,40000L,openTsdb,flag));
 
             //threadPoolExecutor.submit(new StoreThread(0L,20000L,openTsdb,flag));
             //threadPoolExecutor.submit(new StoreThread(30000L,50000L,openTsdb,flag));
