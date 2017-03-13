@@ -7,7 +7,6 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.alibaba.fastjson.JSONObject;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
-import com.sun.scenario.effect.Offset;
 
 import common.Tailfile;
 

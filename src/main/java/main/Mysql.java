@@ -13,6 +13,8 @@ import java.sql.DriverManager;
 
 public class Mysql {
     public static void main(String [] args){
+
+        /*
         try{
             Connection con = null;
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -20,7 +22,10 @@ public class Mysql {
             System.out.println("yes");
         }catch (Exception e){
             System.out.println("Mysql error: " + e.getMessage());
-        }
+        }*/
+
+        Object b = new Integer(1);
+        Integer c = Integer.valueOf((String)b);
     }
 
 }
