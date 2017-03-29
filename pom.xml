@@ -8,6 +8,13 @@
     <artifactId>foruse</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+
+    <properties>
+        <top.dir>${project.basedir}</top.dir>
+        <akka.version>2.4.17</akka.version>
+        <scala.version>2.11.8</scala.version>
+    </properties>
+
     <dependencies>
 
         <dependency>
@@ -268,6 +275,38 @@
             <version>2.24.0</version>
         </dependency>
 
+        <!-- akka -->
+
+        <!--
+        <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-actor_2.11</artifactId>
+            <version>2.4.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-remote_2.11</artifactId>
+            <version>2.4.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-cluster_2.11</artifactId>
+            <version>2.4.1</version>
+        </dependency>
+        -->
+        <!-- https://mvnrepository.com/artifact/com.typesafe.akka/akka-actor_2.11 -->
+        <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-actor_2.11</artifactId>
+            <version>2.4.17</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-remote_2.11</artifactId>
+            <version>2.4.17</version>
+        </dependency>
 
 
 
@@ -301,10 +340,6 @@
            要加上以上插件，才能正常运行
         -->
     </build>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-    </properties>
 
 
 </project>
