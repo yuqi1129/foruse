@@ -16,12 +16,12 @@ public class TestOne {
     public static void main(String [] args) {
         Pattern namePattern = null;
         try {
-            namePattern = Pattern.compile("txt");
+            namePattern = Pattern.compile("txt*");
         } catch (Exception e) {
             //
         }
 
-        if (namePattern.matcher("test.txt").matches()) {
+        if (namePattern.matcher("test.txt1").matches()) {
             System.out.println(true);
         } else {
             System.out.println(false);

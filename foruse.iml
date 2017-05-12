@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_5" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -150,5 +150,19 @@
     <orderEntry type="library" name="Maven: io.aeron:aeron-driver:1.1.0" level="project" />
     <orderEntry type="library" name="Maven: io.aeron:aeron-client:1.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.agrona:agrona:0.9.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.calcite:calcite-core:1.11.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.calcite.avatica:avatica-core:1.9.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.calcite.avatica:avatica-metrics:1.9.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.calcite:calcite-linq4j:1.11.0" level="project" />
+    <orderEntry type="library" name="Maven: commons-dbcp:commons-dbcp:1.4" level="project" />
+    <orderEntry type="library" name="Maven: commons-pool:commons-pool:1.5.4" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.6.3" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.6.3" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.6.3" level="project" />
+    <orderEntry type="library" name="Maven: net.hydromatic:aggdesigner-algorithm:6.0" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.janino:janino:2.7.6" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.janino:commons-compiler:2.7.6" level="project" />
+    <orderEntry type="library" name="Maven: com.github.javaparser:javaparser-core:3.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.mdkt.compiler:InMemoryJavaCompiler:1.2" level="project" />
   </component>
 </module>

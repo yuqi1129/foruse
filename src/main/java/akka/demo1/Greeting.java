@@ -10,15 +10,10 @@ import akka.actor.UntypedActor;
  * To change this template use File | Settings | File Templates.
  */
 
-public class Greeter extends UntypedActor {
+public class Greeting  {
+    public final String message;
 
-    String greeting = "";
-
-    public void onReceive(Object message) throws Throwable {
-        if (message instanceof WhoToGreet) {
-            greeting = "hello" + ((WhoToGreet)message).who;
-        } else if (message instanceof Greeter) {
-            getSender().tell(new Greeting);
-        }
+    public Greeting(String message) {
+        this.message = message;
     }
 }

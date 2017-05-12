@@ -1,5 +1,7 @@
 package akka.demo1;
 
+import java.io.Serializable;
+
 /**
  * Created with foruse.
  * User: hzyuqi1
@@ -8,5 +10,14 @@ package akka.demo1;
  * To change this template use File | Settings | File Templates.
  */
 
-public class WhoToGreet {
+public class WhoToGreet implements Serializable {
+
+    public final String who;
+
+    public WhoToGreet(String who) {
+        this.who = who;
+    }
 }
+
+
+
