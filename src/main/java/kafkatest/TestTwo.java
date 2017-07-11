@@ -45,7 +45,7 @@ public class TestTwo {
         String broker_db180 = "db-180.photo.163.org:9092,db-180.photo.163.org:9093,db-180.photo.163.org:9094" ;
 
         Properties properties = new Properties();
-        properties.put("metadata.broker.list",broker);
+        properties.put("metadata.broker.list",broker_lt);
 
         properties.put("serializer.class","kafka.serializer.StringEncoder");
         properties.put("key.serializer.class" , "kakfa.serializer.StringEncoder");
@@ -55,7 +55,7 @@ public class TestTwo {
 
         properties.put("request.required.acks",1);
 
-        properties.put("bootstrap.servers",broker);
+        properties.put("bootstrap.servers",broker_lt);
         properties.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         properties.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 
@@ -73,7 +73,7 @@ public class TestTwo {
             }
         });*/
 
-        TopicPartition topicPartition = new TopicPartition("datastream.-_-.datastream_kkk_kkk.1",0);
+        TopicPartition topicPartition = new TopicPartition("foreground.-_-.apm.test",3);
         kafkaConsumer.assign(Lists.<TopicPartition>newArrayList(topicPartition));
 
 
@@ -87,8 +87,8 @@ public class TestTwo {
         System.out.println(kafkaConsumer.subscription());
 
 
-        kafkaConsumer.partitionsFor("datastream.-_-.datastream_kkk_kkk.1");
-        for (PartitionInfo partitionInfo : kafkaConsumer.partitionsFor("datastream.-_-.datastream_kkk_kkk.1")){
+        kafkaConsumer.partitionsFor("foreground.-_-.apm.test");
+        for (PartitionInfo partitionInfo : kafkaConsumer.partitionsFor("foreground.-_-.apm.test")){
             System.out.print(partitionInfo.toString());
         }
 

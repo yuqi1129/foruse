@@ -14,6 +14,7 @@ ZookeeperTest\MainFunctiojn$2.class
 main\MppTest.class
 hadooprelative\mahout\two\UserVectorToCocurrenceMapper.class
 hosts\HostMain$2.class
+main\FloatDoubleTest.class
 disruptor\TestOne$2.class
 threadtest\thread\CycliBar$1.class
 hbasetest\testtwo\TestTwo.class
@@ -40,6 +41,7 @@ mqtest\util\TestConsumer.class
 threadtest\BlockQueueTest$1.class
 mqtest\util\testone\ConsumerTest.class
 httpclienttest\testone\TestOne.class
+proxy\Cat.class
 ZookeeperTest\MainFunctionTwo$1.class
 other\RegTest.class
 hadooprelative\mahout\one\TestTwo.class
@@ -48,6 +50,7 @@ jarfile\ExampleTwo.class
 threadtest\thread\CompleteServiceTest$AddSum.class
 opentsdbtest\OpenTsdb.class
 googlecommon\cache\GoogleCache.class
+proxy\Animal.class
 googlecommon\hash\TestHash.class
 mqtest\util\testone\MqBase.class
 akka\demo2\StartCommand.class
@@ -94,10 +97,13 @@ opentsdbtest\Tsdb.class
 hbasetest\testone\TestOne.class
 opentsdbtest\QueryClass.class
 disruptor\TestOne$3.class
+proxy\ProxyTest.class
 akka\demo1\Greeter.class
 threadtest\threadlocal\MainTest.class
 akka\demo1\Greeting.class
 opentsdbtest\OpenTSDBQuery.class
+main\ArrayTest.class
+kafkatest\TestOne$1.class
 other\EnvironmentTest.class
 hadooprelative\mahout\two\UserVectorToCocurrenceReducer.class
 opentsdbtest\TestTwo.class
@@ -112,14 +118,18 @@ googlecommon\cache\GoogleCache$TestThread$1.class
 mqtest\util\testtwo\ReceiverTwo.class
 opentsdbtest\Store.class
 opentsdbtest\ResultClass.class
+proxy\Dog.class
 threadtest\threadlocal\MainTest$Myrun.class
 akka\demo2\ControlActor.class
 logtest\TestNone.class
 ZookeeperTest\MainFunctionTwo.class
 threadtest\thread\CountDown.class
+nuprocess\Test.class
+proxy\AnimalProxy.class
 threadtest\BlockQueueTest.class
 threadtest\thread\Phase.class
 threadtest\thread\LinkedBlockingQueueTest$2.class
+kafkatest\TestOne$2.class
 disruptor\TestOne$4.class
 mqtest\TestOne.class
 common\Person.class

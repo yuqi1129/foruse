@@ -24,6 +24,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.Future;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 import kafka.producer.KeyedMessage;
@@ -42,71 +43,72 @@ public class TestOne {
 
     public static void main(String [] args){
 
+        LinkedBlockingQueue<ProducerRecord> linkedBlockingQueue = new LinkedBlockingQueue<>();
+
         String broker = "kafka0.xs.163.org:9092,kafka1.xs.163.org:9092,kafka2.xs.163.org:9092,kafka3.xs.163.org:9092";
         String broker_lt = "datastream0.lt.163.org:9092,datastream1.lt.163.org:9092,datastream2.lt.163.org:9092,datastream3.lt.163.org:9092,datastream4.lt.163.org:9092,datastream5.lt.163.org:9092" ;
         String broker_db180 = "db-180.photo.163.org:9092,db-180.photo.163.org:9093,db-180.photo.163.org:9094" ;
         String broker_db179 = "db-179.photo.163.org:9092" ;
+        String broker_test = "datastream0.lt.163.org:9092";
+
         Properties properties = new Properties();
-        properties.put("metadata.broker.list",broker_db179);
+        properties.put("metadata.broker.list",broker_test);
 
         properties.put("serializer.class","kafka.serializer.StringEncoder");
         properties.put("key.serializer.class" , "kakfa.serializer.StringEncoder");
 
-        //properties.put("partitioner.class","kafka.kafkatest.TestOne");
-
         properties.put("request.required.acks",1);
 
-        properties.put("bootstrap.servers",  broker_db179);
+        properties.put("bootstrap.servers",  broker_test);
         properties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         properties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
 
-
         Producer<String,String> producer = new KafkaProducer<String, String>(properties);
 
+        Thread thread1 = new Thread(new Runnable() {
+            final Random random = new Random();
+            @Override
+            public void run() {
+                for (int i = 0; i < 1000000; i++) {
+                    String name = "";
+                    //String id = Integer.valueOf(random.nextInt(100)).toString();
+                    String price = Integer.valueOf(random.nextInt(100)).toString();
 
-
-        /*
-
-        long start = System.currentTimeMillis();
-
-        for (long i = 0 ; i < 2000 ; i++){
-            long runtime = new Date().getTime();
-            final String ip = "192.168.2." + random.nextInt(255);
-
-            final   String msg = runtime + ",www.exampl.com," + ip;
-            //logger.info("send key = {},value = {} to kafka",ip,msg);
-
-            //ProducerRecord record = new ProducerRecord<String,String>("test",0,ip,msg);
-            ProducerRecord record = new ProducerRecord<String,String>("my-topic",0,ip,msg);
-            StopWatch stopWatch = new StopWatch();
-            //stopWatch.start();
-            try {
-                Future<RecordMetadata> future= producer.send(record, new Callback() {
-                    public void onCompletion(RecordMetadata recordMetadata, Exception e) {
-                        logger.info("send completed,key={},value={}",ip,msg);
+                    int k = 0;
+                    while (k < 3) {
+                        int start = 97 + random.nextInt(10);
+                        name = name + (char)start;
+                        k++;
                     }
-                });
-
-                //producer.flush();
-                System.out.print(future.get());
-
-            }catch (Exception e){
-                logger.error("caught error {}" ,e.getCause() + " , " + e.getMessage());
+                    System.out.println(name);
+                    linkedBlockingQueue.add(new ProducerRecord("test0510_400", "haha", name + "," + price));
+                }
             }
-        }
+        });
 
-        */
+        thread1.start();
 
-        List<ProducerRecord> producerRecordList = Lists.newArrayList();
+        Thread thread2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    ProducerRecord producerRecord = linkedBlockingQueue.poll();
+                    try {
+                        if (producerRecord != null) {
+                            Future<RecordMetadata> future = producer.send(producerRecord);
+                            RecordMetadata recordMetadata = future.get();
+                            System.out.println(recordMetadata.topic() + ", " + recordMetadata.offset() + " ," + recordMetadata.partition());
+                        }
+                    }catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        thread2.start();
 
-
-        for (int i = 0 ; i < 10000 ; i++){
-            ProducerRecord producerRecord = new ProducerRecord("topic111",0,"192.168.3." + new Random().nextInt(255),"www.ifeng.com==" + new Integer(i).toString());
-            producerRecordList.add(producerRecord);
-
-        }
-
+        /**
         StopWatch stopWatch = new StopWatch();
 
         stopWatch.start();
@@ -134,7 +136,7 @@ public class TestOne {
                 e.printStackTrace();
             }
         }
-
+        */
     }
 
 

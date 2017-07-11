@@ -14,6 +14,7 @@ import java.util.Set;
  */
 
 public class TestOne {
+    private int a = 10;
 
     public static void main(String [] args){
 
@@ -30,6 +31,7 @@ public class TestOne {
 
         System.out.println(set2);
 
+        System.out.println(System.getProperty("line.separator"));
 
     }
 }

@@ -164,5 +164,7 @@
     <orderEntry type="library" name="Maven: org.codehaus.janino:commons-compiler:2.7.6" level="project" />
     <orderEntry type="library" name="Maven: com.github.javaparser:javaparser-core:3.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.mdkt.compiler:InMemoryJavaCompiler:1.2" level="project" />
+    <orderEntry type="library" name="Maven: com.zaxxer:nuprocess:1.1.2" level="project" />
+    <orderEntry type="library" name="Maven: net.java.dev.jna:jna:4.1.0" level="project" />
   </component>
 </module>
