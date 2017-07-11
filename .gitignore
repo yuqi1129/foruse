@@ -1,7 +1,6 @@
 #ignore this file
 *.class
 .idea/*
-.travis.yml
 foruse.iml
 target/*
 
