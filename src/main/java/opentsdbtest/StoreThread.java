@@ -26,7 +26,7 @@ import scala.Int;
  * To change this template use File | Settings | File Templates.
  */
 
-public class StoreThread implements Runnable {
+public class StoreThread extends Thread {
 
     private ThreadLocal<Long> start = new ThreadLocal<Long>() ;
     private Long startCopy ;
@@ -202,7 +202,6 @@ public class StoreThread implements Runnable {
             System.out.println(e);
             logger.error("get error: {}",e);
         }
-
     }
 
 }

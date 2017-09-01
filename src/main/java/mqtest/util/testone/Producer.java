@@ -1,7 +1,11 @@
 package mqtest.util.testone;
 
+import com.google.common.collect.Lists;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 /**
  * Created with foruse.
@@ -20,10 +24,12 @@ public class Producer extends MqBase {
     public void  sendMessage(String message){
 
         try {
-            channel.exchangeDeclare(super.EXCHANGE_NAME, "fanout");
+            //channel.exchangeDeclare(super.EXCHANGE_NAME, "fanout");
+            channel.queueDeclare("test7", true, false, false, null);
             //start to publist message
-            for (int i = 0; i < 10000; i++) {
-                channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes());
+            for (int i = 0; i < 1; i++) {
+                //channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes());
+                channel.basicPublish("", "test7", null, message.getBytes());
             }
            // channel.close();
             //connection.close();
@@ -35,9 +41,16 @@ public class Producer extends MqBase {
     public static void main(String [] args){
         Producer producer = new Producer();
         for (int i = 1; i <= 1000 ; i++){
-            String message = "message-" + i + " was to send";
+            //String message = "message-" + i + " was to send";
+            String message = i + "," + "hello" + "," + i * i;
             System.out.println(message);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             producer.sendMessage(message);
         }
+
     }
 }

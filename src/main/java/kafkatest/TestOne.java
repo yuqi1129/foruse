@@ -74,6 +74,7 @@ public class TestOne {
                     String name = "";
                     //String id = Integer.valueOf(random.nextInt(100)).toString();
                     String price = Integer.valueOf(random.nextInt(100)).toString();
+                    String id = Integer.valueOf(random.nextInt(1000)).toString();
 
                     int k = 0;
                     while (k < 3) {
@@ -82,7 +83,12 @@ public class TestOne {
                         k++;
                     }
                     System.out.println(name);
-                    linkedBlockingQueue.add(new ProducerRecord("test0510_400", "haha", name + "," + price));
+                    linkedBlockingQueue.add(new ProducerRecord("test", "haha", "5" + "," + "afasaa" + name + "," + price));
+                    try {
+                        Thread.currentThread().sleep(10);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });

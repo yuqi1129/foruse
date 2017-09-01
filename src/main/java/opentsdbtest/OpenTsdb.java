@@ -11,6 +11,7 @@ import com.sun.org.apache.regexp.internal.RE;
 import common.Tailfile;
 
 import org.apache.avro.data.Json;
+import org.apache.commons.lang.time.StopWatch;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
@@ -54,9 +55,13 @@ public class OpenTsdb implements Tsdb{
 
     private static HttpClient httpClient = HttpClients.createDefault();
 
-    private static HttpPost httpPost = new HttpPost("http://app-68.photo.163.org:20001/api/put");
+    private static HttpPost httpPost = new HttpPost("http://datastream13.xs.163.org:30001/api/put");
 
-    private static HttpPost httpPost1 = new HttpPost("http://app-68.photo.163.org:20001/api/query");
+    private static HttpPost httpPost1 = new HttpPost("http://datastream13.xs.163.org:30001/api/query");
+
+    public Long  timeTake = 0L;
+
+    private static final StopWatch stopWatch = new StopWatch();
 
     public List<ResultClass>  getDataByGet(String metric,Integer type,Long startTime,Long endTime){
         return null;
@@ -116,7 +121,11 @@ public class OpenTsdb implements Tsdb{
             StringEntity s = new StringEntity(string,"UTF-8");
             s.setContentEncoding("UTF-8");
             httpPost1.setEntity(s);
+
+            stopWatch.start();
             HttpResponse res = httpClient.execute(httpPost1);
+            timeTake += stopWatch.getTime();
+            stopWatch.reset();
             if (res.getStatusLine().getStatusCode()/100  != 2){
                 logger.error("code:" + res.getStatusLine().getStatusCode());
             }
@@ -176,13 +185,14 @@ public class OpenTsdb implements Tsdb{
 
                 map.put("hostname",tailfile1.getHostname());// 应改要用到反射功能
                 map.put("filename",tailfile1.getFileName()); //存filename
-                map.put("inode",tailfile1.getInode().toString());
+                //map.put("inode",tailfile1.getInode().toString());
                 map.put("type",tailfile1.getType().toString());
                 map.put("nodetype",tailfile1.getNodeType().toString());
 
             }
             store.setTags(map);
 
+            /**
             store1.setMetric(tailfile1.getHostname());
             Map<String, String> map1 = Maps.newHashMap();
             map1.put("type", new Integer(tailfile1.getType()).toString());
@@ -191,9 +201,9 @@ public class OpenTsdb implements Tsdb{
             store1.setTags(map1);
             store1.setValue(tailfile1.getCount());
             store1.setTimestamp(tailfile1.getTimeStamp());
-
+            */
             storeList.add(store);
-            storeList.add(store1);
+            //storeList.add(store1);
 
         }
 

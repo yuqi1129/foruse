@@ -19,6 +19,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import kafka.admin.AdminUtils;
 import kafka.utils.ZkUtils;
@@ -62,33 +64,17 @@ public class TestTwo {
 
         KafkaConsumer<String,String> kafkaConsumer = new KafkaConsumer<String, String>(properties);
 
-        /*
-        kafkaConsumer.subscribe(Lists.newArrayList("datastream.-_-.datastream_kkk_kkk.1"), new ConsumerRebalanceListener() {
-            public void onPartitionsRevoked(Collection<TopicPartition> collection) {
-
-            }
-
-            public void onPartitionsAssigned(Collection<TopicPartition> collection) {
-
-            }
-        });*/
-
-        TopicPartition topicPartition = new TopicPartition("foreground.-_-.apm.test",3);
+        TopicPartition topicPartition = new TopicPartition("datastream.-_-.nim_online_app.1",3);
         kafkaConsumer.assign(Lists.<TopicPartition>newArrayList(topicPartition));
-
-
         //kafkaConsumer.seek(topicPartition,100);
         //kafkaConsumer.subscribe(Lists.<String>newArrayList("test"));
-
-
 
         //kafkaConsumer.seekToBeginning(topicPartition);
         System.out.println(kafkaConsumer.assignment());
         System.out.println(kafkaConsumer.subscription());
 
 
-        kafkaConsumer.partitionsFor("foreground.-_-.apm.test");
-        for (PartitionInfo partitionInfo : kafkaConsumer.partitionsFor("foreground.-_-.apm.test")){
+        for (PartitionInfo partitionInfo : kafkaConsumer.partitionsFor("datastream.-_-.nim_online_app.1")){
             System.out.print(partitionInfo.toString());
         }
 
@@ -101,6 +87,33 @@ public class TestTwo {
 
             if (records != null) {
                 for (ConsumerRecord<String, String> record : records) {
+                    //System.out.println(record.value());
+                    if (record.value().contains("\\\"sid\\\":2") && (record.value().contains("\\\"cid\\\":2") || record.value().contains("\\\"cid\\\":3") || record.value().contains("\\\"cid\\\":6") )) {
+                        System.out.println(record.value());
+
+                        Pattern pattern1 = Pattern.compile("\"sid\":([0-9]+),\"cid\":([0-9]+),");
+                        Matcher matcher1 = pattern1.matcher(record.value().replace("\\",""));
+                        if(matcher1.find()) {
+                            System.out.println(matcher1.group(1));
+                            System.out.println(matcher1.group(2));
+                        }
+
+                        Pattern pattern2 = Pattern.compile("\"clientIp\":\"([\\d\\.]+)\"");
+                        Matcher matcher2 = pattern2.matcher(record.value().replace("\\",""));
+                        if (matcher2.find()) {
+                            System.out.println(matcher2.group(1));
+                        }
+
+                        Pattern pattern3 = Pattern.compile("\"begintime\":([\\d]+)}");
+                        Matcher matcher3 = pattern3.matcher(record.value().replace("\\",""));
+                        if (matcher3.find()) {
+                            System.out.println(matcher3.group(1));
+                        }
+
+
+                    }
+
+                    /**
                     System.out.println("partition=" + record.partition());
                     System.out.println("offset=" + record.offset());
                     System.out.println("value=" + record.value());
@@ -112,6 +125,7 @@ public class TestTwo {
 
                     kafkaConsumer.commitSync(metadataMap);
                     break ;
+                     */
                 }
             }
         }

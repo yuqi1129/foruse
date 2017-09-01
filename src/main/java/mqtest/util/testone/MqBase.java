@@ -30,6 +30,7 @@ public class MqBase {
         try {
             ConnectionFactory connectionFactory = new ConnectionFactory();
             connectionFactory.setHost("app-68.photo.163.org");
+            connectionFactory.setVirtualHost("/");
             this.connection = connectionFactory.newConnection();
             this.channel = connection.createChannel();
         }catch (Exception e){

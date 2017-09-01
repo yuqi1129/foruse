@@ -2,6 +2,7 @@ package flink.package1;
 
 import com.google.common.io.CharStreams;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import sun.nio.cs.StandardCharsets;

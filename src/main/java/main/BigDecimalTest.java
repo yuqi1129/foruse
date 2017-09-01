@@ -1,7 +1,13 @@
 package main;
 
+import com.google.common.collect.Maps;
+
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.math.MathContext;
+import java.util.Map;
+
+import static java.math.BigDecimal.ROUND_HALF_UP;
 
 /**
  * Created with foruse.
@@ -12,6 +18,7 @@ import java.math.MathContext;
  */
 
 public class BigDecimalTest {
+    /**
     public static void main(String [] args) {
         BigDecimal one = new BigDecimal("0.06");
         BigDecimal two = new BigDecimal("0.01");
@@ -41,5 +48,18 @@ public class BigDecimalTest {
         Double result2 = Double.MAX_VALUE - Double.MIN_VALUE;
         System.out.println(result2);
         System.out.println(Double.MAX_VALUE);
+    }*/
+
+    public static void main(String[] args) {
+        BigInteger bigInteger = new BigInteger("23");
+        BigDecimal bigDecimal = new BigDecimal(bigInteger);
+        Long l = 4L;
+
+        System.out.println(bigDecimal.divide(BigDecimal.valueOf(l), 14, ROUND_HALF_UP).doubleValue());
+
+        Map<String, Integer> map = Maps.newHashMap();
+        map.put(null, 1);
+        System.out.println(map.get(null));
     }
+
 }

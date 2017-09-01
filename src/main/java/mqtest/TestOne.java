@@ -25,6 +25,14 @@ public class TestOne {
 
     public static void main(String [] args){
 
+
+
+
+
+        System.out.println(1482315000000L - 1482315000000L % 3600000);
+
+        System.out.println(((Number) 12345L).intValue());
+
         try {
 
             TestConsumer consumer = new TestConsumer("test-yuqi");

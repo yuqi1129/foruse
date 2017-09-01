@@ -4,6 +4,7 @@ import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
+import com.rabbitmq.client.QueueingConsumer;
 
 import org.apache.commons.logging.Log;
 import org.slf4j.Logger;
@@ -21,6 +22,8 @@ public class ConsumerTest extends MqBase {
 
     private static final Logger logger = LoggerFactory.getLogger(ConsumerTest.class);
     public void consume(){
+
+        /**
         try {
             channel.exchangeDeclare(EXCHANGE_NAME,"fanout");
             String queueName = channel.queueDeclare().getQueue();
@@ -40,14 +43,22 @@ public class ConsumerTest extends MqBase {
 
                 }
             };
-
             channel.basicConsume(queueName,true,consumer);
-
-
-
         }catch (Exception e){
             logger.error("get error: {}",e);
+        }*/
+        try {
+            final QueueingConsumer consumer = new QueueingConsumer(channel);
+
+            channel.basicConsume("test2", true, consumer);
+            while (true) {
+                QueueingConsumer.Delivery delivery = consumer.nextDelivery();
+                System.out.println(new String(delivery.getBody()));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 
     public static void main(String [] args){

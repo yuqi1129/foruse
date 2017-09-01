@@ -65,8 +65,8 @@ public class TestOne {
 
 
         testOne.storeData(openTsdb,TAILFILE);
-        testOne.storeData(openTsdb,DATAROUTE);
-        testOne.storeData(openTsdb,DATAHANDLER);
+        //testOne.storeData(openTsdb,DATAROUTE);
+        //testOne.storeData(openTsdb,DATAHANDLER);
         //testOne.getQueryResult()
 
 
@@ -88,21 +88,24 @@ public class TestOne {
             //threadPoolExecutor.submit(new StoreThread(0L,10000000L,openTsdb,flag));
             //threadPoolExecutor.submit(new StoreThread(17140000L,20000000L,openTsdb,flag));
             //threadPoolExecutor.submit(new StoreThread(25280000L,30000000L,openTsdb,flag));
-
-            threadPoolExecutor.submit(new StoreThread(0L,20000L,openTsdb,flag));
-            threadPoolExecutor.submit(new StoreThread(20001L,30000L,openTsdb,flag));
-            threadPoolExecutor.submit(new StoreThread(30001L,40000L,openTsdb,flag));
+            StoreThread t = new StoreThread(0L,10000L,openTsdb,flag);
+            //threadPoolExecutor.submit(t);
+            t.start();
+            t.join();
+            //threadPoolExecutor.submit(new StoreThread(20001L,30000L,openTsdb,flag));
+            //threadPoolExecutor.submit(new StoreThread(30001L,40000L,openTsdb,flag));
 
             //threadPoolExecutor.submit(new StoreThread(0L,20000L,openTsdb,flag));
             //threadPoolExecutor.submit(new StoreThread(30000L,50000L,openTsdb,flag));
             //threadPoolExecutor.submit(new StoreThread(60000L,80000L,openTsdb,flag));
 
-            System.out.println(Thread.currentThread());
+            //System.out.println(Thread.currentThread());
         }catch (Exception e){
             logger.error("get error: {}",e);
         }
 
         threadPoolExecutor.shutdown();
+        System.out.println("Time take = " + openTsdb.timeTake);
 
     }
 
