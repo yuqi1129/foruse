@@ -24,7 +24,7 @@ public class MainFunctiojn {
 
         ZooKeeper zooKeeper = null;
         try {
-            zooKeeper = new ZooKeeper("app-68.photo.163.org", 500000, new Watcher() {
+            zooKeeper = new ZooKeeper("sloth2.hz.163.org:2181,sloth3.hz.163.org:2181,sloth4.hz.163.org:2181", 5000, new Watcher() {
                 public void process(WatchedEvent watchedEvent) {
 
                     try {
