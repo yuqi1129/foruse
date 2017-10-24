@@ -1,11 +1,16 @@
 package host;
 
-import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.google.common.net.InetAddresses;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.time.StopWatch;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClients;
 
 import java.io.File;
 import java.io.InputStream;
@@ -16,7 +21,6 @@ import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.DoubleAccumulator;
 
 
 /**
@@ -40,13 +44,13 @@ public class GetHost {
 			new ThreadPoolExecutor.CallerRunsPolicy()
 	);
 
+	private static HttpClient httpClient = HttpClients.createDefault();
+	private static File file = new File("google.txt");
 	public static void main(String[] args) {
 		//read text;
 		String content = null;
-		File file = null;
 		try {
 			InputStream inputStream = GetHost.class.getClassLoader().getResourceAsStream("host.txt");
-			file = new File("result.txt");
 			content = IOUtils.toString(inputStream);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -60,15 +64,22 @@ public class GetHost {
 		for (String ip : ips) {
 			String ipAndGateString = ip.trim().split(":")[1];
 			String[] ipAndGate = ipAndGateString.trim().split("/");
-			pingIp(ipAndGate[0], ipAndGate[1], file);
+			pingIp(ipAndGate[0], ipAndGate[1]);
+			try {
+				Thread.currentThread().sleep(4000);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			System.out.println("Thread queue size = " + threadPool.getQueue().size());
 		}
 
 		//now sort and write to text
 
 	}
 
-	private static void pingIp(String ip, String gate, final File file) {
-		int nu = Integer.valueOf(gate);
+	private static void pingIp(String ip, String gate) {
+		int nu = 32 - Integer.valueOf(gate);
 		int number = (1 << nu);
 		int addrInt = stringToInt(ip);
 		for (int i = 1; i < number; i++) {
@@ -77,22 +88,39 @@ public class GetHost {
 			threadPool.submit(new Runnable() {
 				@Override
 				public void run() {
-					List<String> tmps = Lists.newArrayList("ping", s, "-n", "4");
+					List<String> tmps = Lists.newArrayList("ping", s, "-c", "4");
 					try {
+						/**
 						ProcessBuilder processBuilder = new ProcessBuilder(tmps);
 						Process process = processBuilder.start();
 						process.waitFor(6, TimeUnit.SECONDS);
 						String output = IOUtils.toString(process.getInputStream(), Charset.forName("UTF-8"));
 						String[] strings = output.trim().split("\n");
 						String resultString = strings[strings.length -1];
-
+                        System.out.println(resultString);
 						if (resultString.startsWith("rtt")) {
 							//list.add(new IpLantency(s, Double.valueOf(getLantency(resultString))));
 							FileUtils.write(file, s + " " + getLantency(resultString));
 							System.out.println(s + " " + getLantency(resultString));
+						}*/
+
+						System.out.println("http://" + s);
+						HttpGet httpGet = new HttpGet("http://" + s);
+						RequestConfig requestConfig = RequestConfig.custom().setConnectionRequestTimeout(10000).setConnectTimeout(10000).setSocketTimeout(10000).build();
+						httpGet.setConfig(requestConfig);
+						StopWatch stopWatch = new StopWatch();
+						stopWatch.start();
+
+						HttpResponse httpResponse = httpClient.execute(httpGet);
+						long time = stopWatch.getTime();
+
+						if (httpResponse.getStatusLine().getStatusCode() / 100 != 2){
+							return;
 						}
+						FileUtils.write(file, s + " "  + time + "\n", true);
+						System.out.println(s + " " + time + "\n");
 					} catch (Exception e) {
-						e.printStackTrace();
+						//e.printStackTrace();
 					}
 				}
 			});
