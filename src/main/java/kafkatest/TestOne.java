@@ -83,7 +83,7 @@ public class TestOne {
                         k++;
                     }
                     System.out.println(name);
-                    linkedBlockingQueue.add(new ProducerRecord("test", "haha", "5" + "," + "afasaa" + name + "," + price));
+                    linkedBlockingQueue.add(new ProducerRecord("test0510_3", "haha", name + "," + price));
                     try {
                         Thread.currentThread().sleep(10);
                     } catch (Exception e) {

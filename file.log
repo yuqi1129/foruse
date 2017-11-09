@@ -2726,3 +2726,58 @@ main-SendThread(sloth4.hz.163.org:2181) 2017-10-09 20:05:00,523 10320316 INFO  o
 main-SendThread(sloth4.hz.163.org:2181) 2017-10-09 20:05:00,529 10320322 INFO  org.apache.zookeeper.ClientCnxn -Socket connection established to sloth4.hz.163.org/10.120.196.120:2181, initiating session
 main-SendThread(sloth4.hz.163.org:2181) 2017-10-09 20:05:00,535 10320328 INFO  org.apache.zookeeper.ClientCnxn -Session establishment complete on server sloth4.hz.163.org/10.120.196.120:2181, sessionid = 0x35c8bac36c700b8, negotiated timeout = 5000
 main-EventThread 2017-10-09 20:05:00,539 10320332 INFO  org.apache.curator.framework.state.ConnectionStateManager -State change: RECONNECTED
+main 2017-10-25 22:19:41,890 0    INFO  org.apache.kafka.clients.producer.ProducerConfig -ProducerConfig values: 
+	compression.type = none
+	metric.reporters = []
+	metadata.max.age.ms = 300000
+	metadata.fetch.timeout.ms = 60000
+	reconnect.backoff.ms = 50
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	bootstrap.servers = [datastream0.lt.163.org:9092]
+	retry.backoff.ms = 100
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	buffer.memory = 33554432
+	timeout.ms = 30000
+	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	ssl.keystore.type = JKS
+	ssl.trustmanager.algorithm = PKIX
+	block.on.buffer.full = false
+	ssl.key.password = null
+	max.block.ms = 60000
+	sasl.kerberos.min.time.before.relogin = 60000
+	connections.max.idle.ms = 540000
+	ssl.truststore.password = null
+	max.in.flight.requests.per.connection = 5
+	metrics.num.samples = 2
+	client.id = 
+	ssl.endpoint.identification.algorithm = null
+	ssl.protocol = TLS
+	request.timeout.ms = 30000
+	ssl.provider = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	acks = 1
+	batch.size = 16384
+	ssl.keystore.location = null
+	receive.buffer.bytes = 32768
+	ssl.cipher.suites = null
+	ssl.truststore.type = JKS
+	security.protocol = PLAINTEXT
+	retries = 0
+	max.request.size = 1048576
+	value.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	ssl.truststore.location = null
+	ssl.keystore.password = null
+	ssl.keymanager.algorithm = SunX509
+	metrics.sample.window.ms = 30000
+	partitioner.class = class org.apache.kafka.clients.producer.internals.DefaultPartitioner
+	send.buffer.bytes = 131072
+	linger.ms = 0
+
+main 2017-10-25 22:19:42,485 595  WARN  org.apache.kafka.clients.producer.ProducerConfig -The configuration key.serializer.class = kakfa.serializer.StringEncoder was supplied but isn't a known config.
+main 2017-10-25 22:19:42,494 604  WARN  org.apache.kafka.clients.producer.ProducerConfig -The configuration metadata.broker.list = datastream0.lt.163.org:9092 was supplied but isn't a known config.
+main 2017-10-25 22:19:42,501 611  WARN  org.apache.kafka.clients.producer.ProducerConfig -The configuration request.required.acks = 1 was supplied but isn't a known config.
+main 2017-10-25 22:19:42,511 621  WARN  org.apache.kafka.clients.producer.ProducerConfig -The configuration serializer.class = kafka.serializer.StringEncoder was supplied but isn't a known config.
+main 2017-10-25 22:19:42,523 633  INFO  org.apache.kafka.common.utils.AppInfoParser -Kafka version : 0.9.0.1
+main 2017-10-25 22:19:42,545 655  INFO  org.apache.kafka.common.utils.AppInfoParser -Kafka commitId : 23c69d62a0cabf06
