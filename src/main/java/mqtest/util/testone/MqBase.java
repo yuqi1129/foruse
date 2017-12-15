@@ -24,11 +24,12 @@ public class MqBase {
     private static final Logger logger = LoggerFactory.getLogger(MqBase.class);
     protected static final String EXCHANGE_NAME = "logs" ;
     protected Channel channel ;
-    protected Connection connection ;
+    protected Connection connection;
+    ConnectionFactory connectionFactory;
 
     public MqBase(){
         try {
-            ConnectionFactory connectionFactory = new ConnectionFactory();
+            connectionFactory = new ConnectionFactory();
             connectionFactory.setHost("app-68.photo.163.org");
             connectionFactory.setVirtualHost("/");
             this.connection = connectionFactory.newConnection();

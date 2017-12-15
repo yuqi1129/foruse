@@ -32,6 +32,7 @@ public class TestOne {
         System.out.println(set2);
 
         System.out.println(System.getProperty("line.separator"));
+        args[0] = "haha";
 
     }
 }

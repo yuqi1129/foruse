@@ -65,9 +65,9 @@ public class TestTwo {
         KafkaConsumer<String,String> kafkaConsumer = new KafkaConsumer<String, String>(properties);
 
         TopicPartition topicPartition = new TopicPartition("datastream.-_-.nim_online_app.1",3);
-        kafkaConsumer.assign(Lists.<TopicPartition>newArrayList(topicPartition));
+        //kafkaConsumer.assign(Lists.<TopicPartition>newArrayList(topicPartition));
         //kafkaConsumer.seek(topicPartition,100);
-        //kafkaConsumer.subscribe(Lists.<String>newArrayList("test"));
+        kafkaConsumer.subscribe(Lists.<String>newArrayList("datastream.-_-.nim_online_app.1"));
 
         //kafkaConsumer.seekToBeginning(topicPartition);
         System.out.println(kafkaConsumer.assignment());

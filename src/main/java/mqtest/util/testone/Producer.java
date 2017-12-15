@@ -25,15 +25,16 @@ public class Producer extends MqBase {
 
         try {
             //channel.exchangeDeclare(super.EXCHANGE_NAME, "fanout");
-            channel.queueDeclare("test7", true, false, false, null);
+            channel.queueDeclare("test", true, false, false, null);
             //start to publist message
             for (int i = 0; i < 1; i++) {
                 //channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes());
-                channel.basicPublish("", "test7", null, message.getBytes());
+                channel.basicPublish("", "test", null, message.getBytes());
             }
            // channel.close();
             //connection.close();
         }catch (Exception e){
+            e.printStackTrace();
             logger.error("get error:{}",e);
         }
     }
@@ -42,7 +43,7 @@ public class Producer extends MqBase {
         Producer producer = new Producer();
         for (int i = 1; i <= 1000 ; i++){
             //String message = "message-" + i + " was to send";
-            String message = i + "," + "hello" + "," + i * i;
+            String message = "hello," + i * i;
             System.out.println(message);
             try {
                 Thread.sleep(1000);

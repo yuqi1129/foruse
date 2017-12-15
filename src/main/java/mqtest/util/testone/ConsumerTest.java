@@ -21,6 +21,11 @@ import org.slf4j.LoggerFactory;
 public class ConsumerTest extends MqBase {
 
     private static final Logger logger = LoggerFactory.getLogger(ConsumerTest.class);
+
+    public ConsumerTest() {
+        super();
+    }
+
     public void consume(){
 
         /**
@@ -48,9 +53,15 @@ public class ConsumerTest extends MqBase {
             logger.error("get error: {}",e);
         }*/
         try {
+            if (connection == null) {
+                connection = connectionFactory.newConnection();
+            }
+            if (channel == null) {
+                channel = connection.createChannel();
+            }
             final QueueingConsumer consumer = new QueueingConsumer(channel);
 
-            channel.basicConsume("test2", true, consumer);
+            channel.basicConsume("test", true, consumer);
             while (true) {
                 QueueingConsumer.Delivery delivery = consumer.nextDelivery();
                 System.out.println(new String(delivery.getBody()));

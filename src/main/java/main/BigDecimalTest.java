@@ -2,9 +2,11 @@ package main;
 
 import com.google.common.collect.Maps;
 
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.MathContext;
+import java.util.Arrays;
 import java.util.Map;
 
 import static java.math.BigDecimal.ROUND_HALF_UP;
@@ -51,6 +53,8 @@ public class BigDecimalTest {
     }*/
 
     public static void main(String[] args) {
+
+        /**
         BigInteger bigInteger = new BigInteger("23");
         BigDecimal bigDecimal = new BigDecimal(bigInteger);
         Long l = 4L;
@@ -60,6 +64,18 @@ public class BigDecimalTest {
         Map<String, Integer> map = Maps.newHashMap();
         map.put(null, 1);
         System.out.println(map.get(null));
+         */
+
+        try {
+            Class<?> aClass = TestOne.class;
+            TestOne testOne = (TestOne) aClass.newInstance();
+            Method method = aClass.getDeclaredMethod("main", String[].class);
+            String[] objects = new String[]{"test"};
+            method.invoke(testOne, (Object)objects);
+            System.out.println(Arrays.toString(objects));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
