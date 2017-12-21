@@ -3,6 +3,8 @@ package kafkatest;
 import com.google.common.base.Preconditions;
 
 import com.google.common.collect.Lists;
+import kafka.admin.TopicCommand;
+import kafka.admin.TopicCommand$;
 import org.apache.commons.lang.time.StopWatch;
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;

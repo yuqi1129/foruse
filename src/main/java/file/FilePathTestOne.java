@@ -1,13 +1,10 @@
 package file;
 
-import org.apache.commons.io.IOUtils;
-
 import java.io.File;
-import java.io.InputStream;
 import java.net.URL;
 
 /**
- * Created with foruse.
+ * Created with foruse.Ø
  * User: hzyuqi1
  * Date: 2017/9/22
  * Time: 9:57
