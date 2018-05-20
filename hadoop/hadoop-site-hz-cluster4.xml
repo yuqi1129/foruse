@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl"  href="configuration.xsl"?>
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://hz-cluster4</value>
+        <final>true</final>
+    </property>
+    <property>
+        <name>fs.hdfs.impl.disable.cache</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>dfs.socket.timeout</name>
+        <value>3000000</value>
+    </property>
+    <property>
+        <name>dfs.umaskmode</name>
+        <value>027</value>
+    </property>
+    <property>
+        <name>hadoop.security.authorization</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>hadoop.security.authentication</name>
+        <value>kerberos</value>
+    </property>
+    <property>
+        <name>dfs.block.size</name>
+        <value>268435456</value>
+    </property>
+    <property>
+        <name>dfs.nameservices</name>
+        <value>hz-cluster4</value>
+    </property>
+
+    <property>
+        <name>dfs.ha.namenodes.hz-cluster4</name>
+        <value>nn1,nn2</value>
+    </property>
+
+    <property>
+        <name>dfs.namenode.rpc-address.hz-cluster4.nn1</name>
+        <value>hadoop517.lt.163.org:8020</value>
+    </property>
+    <property>
+        <name>dfs.namenode.servicerpc-address.hz-cluster4.nn1</name>
+        <value>hadoop518.lt.163.org:8022</value>
+    </property>
+
+    <property>
+        <name>dfs.namenode.http-address.hz-cluster4.nn1</name>
+        <value>hadoop517.lt.163.org:50070</value>
+    </property>
+    <property>
+        <name>dfs.namenode.https-address.hz-cluster4.nn1</name>
+        <value>hadoop517.lt.163.org:50470</value>
+    </property>
+    <property>
+        <name>dfs.namenode.rpc-address.hz-cluster4.nn2</name>
+        <value>hadoop518.lt.163.org:8020</value>
+    </property>
+    <property>
+        <name>dfs.namenode.servicerpc-address.hz-cluster4.nn2</name>
+        <value>hadoop518.lt.163.org:8022</value>
+    </property>
+    <property>
+        <name>dfs.namenode.http-address.hz-cluster4.nn2</name>
+        <value>hadoop518.lt.163.org:50070</value>
+    </property>
+    <property>
+        <name>dfs.namenode.https-address.hz-cluster4.nn2</name>
+        <value>hadoop518.lt.163.org:50470</value>
+    </property>
+    <property>
+        <name>dfs.client.failover.proxy.provider.hz-cluster4</name>
+        <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+    </property>
+
+    <property>
+        <name>dfs.ha.fencing.methods</name>
+        <value>shell(/bin/true)</value>
+    </property>
+    <property>
+        <name>dfs.ha.automatic-failover.enabled.hz-cluster4</name>
+        <value>true</value>
+    </property>
+    <!-- HA kerberos -->
+    <property>
+        <name>dfs.journalnode.keytab.file</name>
+        <value>/home/ds/flume/flume.keytab</value>
+    </property>
+
+    <property>
+        <name>dfs.journalnode.kerberos.principal</name>
+        <value>hdfs/_HOST@HADOOP.HZ.NETEASE.COM</value>
+    </property>
+
+    <property>
+        <name>dfs.journalnode.kerberos.internal.spnego.principal</name>
+        <value>HTTP/_HOST@HADOOP.HZ.NETEASE.COM</value>
+    </property>
+
+
+    <property>
+        <name>dfs.namenode.kerberos.principal</name>
+        <value>hdfs/_HOST@HADOOP.HZ.NETEASE.COM</value>
+    </property>
+
+</configuration>

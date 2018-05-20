@@ -45,7 +45,7 @@ public class GetHost {
 	);
 
 	private static HttpClient httpClient = HttpClients.createDefault();
-	private static File file = new File("google.txt");
+	private static File file = new File("new_google.txt");
 	public static void main(String[] args) {
 		//read text;
 		String content = null;

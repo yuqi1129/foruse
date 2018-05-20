@@ -1,0 +1,123 @@
+<!--
+    Importance!!!
+    1, This config file is a default config for yarn cluster on sloth1 ~ sloth14.
+    2, It should be replace if you want to deploy on a different yarn cluster.
+-->
+<configuration>
+
+    <property>
+        <name>ipc.client.fallback-to-simple-auth-allowed</name>
+        <value>true</value>
+    </property>
+
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://sloth-01</value>
+        <final>true</final>
+    </property>
+
+    <property>
+        <name>fs.trash.interval</name>
+        <value>360</value>
+    </property>
+
+    <property>
+        <name>ha.failover-controller.active-standby-elector.zk.op.retries</name>
+        <value>120</value>
+    </property>
+
+    <property>
+        <name>ha.zookeeper.quorum</name>
+        <value>sloth3.hz.163.org:2181,sloth4.hz.163.org:2181,sloth2.hz.163.org:2181</value>
+    </property>
+
+    <property>
+        <name>hadoop.http.authentication.simple.anonymous.allowed</name>
+        <value>true</value>
+    </property>
+
+    <property>
+        <name>hadoop.proxyuser.hdfs.groups</name>
+        <value>*</value>
+    </property>
+
+    <property>
+        <name>hadoop.proxyuser.hdfs.hosts</name>
+        <value>*</value>
+    </property>
+
+    <property>
+        <name>hadoop.proxyuser.sloth.groups</name>
+        <value>*</value>
+    </property>
+
+    <property>
+        <name>hadoop.proxyuser.sloth.hosts</name>
+        <value>sloth1.hz.163.org</value>
+    </property>
+
+    <property>
+        <name>hadoop.proxyuser.yarn.hosts</name>
+        <value>*</value>
+    </property>
+
+    <property>
+        <name>hadoop.security.auth_to_local</name>
+        <value>DEFAULT</value>
+    </property>
+
+    <property>
+        <name>hadoop.security.authentication</name>
+        <value>simple</value>
+    </property>
+
+    <property>
+        <name>hadoop.security.authorization</name>
+        <value>false</value>
+    </property>
+
+    <property>
+        <name>io.compression.codecs</name>
+        <value>org.apache.hadoop.io.compress.GzipCodec,org.apache.hadoop.io.compress.DefaultCodec,org.apache.hadoop.io.compress.SnappyCodec</value>
+    </property>
+
+    <property>
+        <name>io.file.buffer.size</name>
+        <value>131072</value>
+    </property>
+
+    <property>
+        <name>io.serializations</name>
+        <value>org.apache.hadoop.io.serializer.WritableSerialization</value>
+    </property>
+
+    <property>
+        <name>ipc.client.connect.max.retries</name>
+        <value>50</value>
+    </property>
+
+    <property>
+        <name>ipc.client.connection.maxidletime</name>
+        <value>30000</value>
+    </property>
+
+    <property>
+        <name>ipc.client.idlethreshold</name>
+        <value>8000</value>
+    </property>
+
+    <property>
+        <name>ipc.server.tcpnodelay</name>
+        <value>true</value>
+    </property>
+
+    <property>
+        <name>mapreduce.jobtracker.webinterface.trusted</name>
+        <value>false</value>
+    </property>
+
+    <property>
+        <name>net.topology.script.file.name</name>
+        <value>/etc/hadoop/conf/topology_script.py</value>
+    </property>
+</configuration>

@@ -45,87 +45,87 @@ import javax.annotation.Nullable;
 public class WindowTestOne {
 
     public static void main(String[] args) {
-//
-//        StreamExecutionEnvironment streamExecutionEnvironment = StreamExecutionEnvironment.createLocalEnvironment();
-//
-//        streamExecutionEnvironment.getConfig().setAutoWatermarkInterval(5000);
-//        TypeSerializer<Integer> serial = new IntSerializer();
-//        MyWindowFunction<Integer, Integer, Integer, TimeWindow> window = new MyWindowFunction<>(serial);
-//
-//        DataStream<Integer> dataStream =
-//                streamExecutionEnvironment.addSource(new ParallelSourceFunction<Integer>() {
-//            private boolean isRunning = true;
-//            @Override
-//            public void run(SourceContext<Integer> ctx) throws Exception {
-//                Random r = new Random();
-//                while (isRunning) {
-//                    ctx.collect(Integer.valueOf(r.nextInt(100)));
-//                    try {
-//                        Thread.sleep(1000);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void cancel() {
-//                isRunning = false;
-//            }
-//        }).filter(new FilterFunction<Integer>() {
-//            @Override
-//            public boolean filter(Integer integer) throws Exception {
-//                return integer != null;
-//            }
-//        }).assignTimestampsAndWatermarks(new AssignerWithPeriodicWatermarks<Integer>() {
-//
-//            private long maxTimeStamp = 0L;
-//            @Nullable
-//            @Override
-//            public Watermark getCurrentWatermark() {
-//                final long now = Math.max(maxTimeStamp, System.currentTimeMillis());
-//                maxTimeStamp = now;
-//                return new Watermark(maxTimeStamp - 1);
-//            }
-//
-//            @Override
-//            public long extractTimestamp(Integer element, long previousElementTimestamp) {
-//                if (maxTimeStamp == 0L) {
-//                    maxTimeStamp = System.currentTimeMillis();
-//                }
-//                return maxTimeStamp;
-//            }
-//        }).keyBy(new KeySelector<Integer, Integer>() {
-//            @Override
-//            public Integer getKey(Integer integer) throws Exception {
-//                return integer % 15;
-//            }
-//        }).window(TumblingEventTimeWindows.of(Time.seconds(5))).trigger(EventTimeTrigger.create()).apply(window).returns(Integer.class);
-//
-//
-//        dataStream.print();
-//
-//        try {
-//            streamExecutionEnvironment.execute("a test job");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
 
-        ThreadPoolExecutor th = (ThreadPoolExecutor) Executors.newFixedThreadPool(1);
-        Future<Integer> f = th.submit(new Callable<Integer>() {
+        StreamExecutionEnvironment streamExecutionEnvironment = StreamExecutionEnvironment.createLocalEnvironment();
+
+        streamExecutionEnvironment.getConfig().setAutoWatermarkInterval(5000);
+        TypeSerializer<Integer> serial = new IntSerializer();
+        MyWindowFunction<Integer, Integer, Integer, TimeWindow> window = new MyWindowFunction<>(serial);
+
+        DataStream<Integer> dataStream =
+                streamExecutionEnvironment.addSource(new ParallelSourceFunction<Integer>() {
+            private boolean isRunning = true;
             @Override
-            public Integer call() throws Exception {
-                return 1;
+            public void run(SourceContext<Integer> ctx) throws Exception {
+                Random r = new Random();
+                while (isRunning) {
+                    ctx.collect(Integer.valueOf(r.nextInt(100)));
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
-        });
+
+            @Override
+            public void cancel() {
+                isRunning = false;
+            }
+        }).filter(new FilterFunction<Integer>() {
+            @Override
+            public boolean filter(Integer integer) throws Exception {
+                return integer != null;
+            }
+        }).assignTimestampsAndWatermarks(new AssignerWithPeriodicWatermarks<Integer>() {
+
+            private long maxTimeStamp = 0L;
+            @Nullable
+            @Override
+            public Watermark getCurrentWatermark() {
+                final long now = Math.max(maxTimeStamp, System.currentTimeMillis());
+                maxTimeStamp = now;
+                return new Watermark(maxTimeStamp - 1);
+            }
+
+            @Override
+            public long extractTimestamp(Integer element, long previousElementTimestamp) {
+                if (maxTimeStamp == 0L) {
+                    maxTimeStamp = System.currentTimeMillis();
+                }
+                return maxTimeStamp;
+            }
+        }).keyBy(new KeySelector<Integer, Integer>() {
+            @Override
+            public Integer getKey(Integer integer) throws Exception {
+                return integer % 15;
+            }
+        }).window(TumblingEventTimeWindows.of(Time.seconds(5))).trigger(EventTimeTrigger.create()).apply(window).returns(Integer.class);
+
+
+        dataStream.print();
 
         try {
-            System.out.print(f.get());
-            th.shutdown();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+            streamExecutionEnvironment.execute("a test job");
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
+//        ThreadPoolExecutor th = (ThreadPoolExecutor) Executors.newFixedThreadPool(1);
+//        Future<Integer> f = th.submit(new Callable<Integer>() {
+//            @Override
+//            public Integer call() throws Exception {
+//                return 1;
+//            }
+//        });
+//
+//        try {
+//            System.out.print(f.get());
+//            th.shutdown();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//        }
     }
 }

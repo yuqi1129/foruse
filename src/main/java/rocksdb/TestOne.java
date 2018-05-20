@@ -1,5 +1,6 @@
 package rocksdb;
 
+import com.google.common.base.Preconditions;
 import org.rocksdb.RocksDB;
 import org.rocksdb.RocksDBException;
 
@@ -18,7 +19,7 @@ public class TestOne {
     private static RocksDB rocksDB;
     static {
         try {
-            rocksDB = RocksDB.open("E:/test/");
+            rocksDB = RocksDB.open("/tmp/rocksdb");
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -28,7 +29,7 @@ public class TestOne {
         try {
 
             ExecutorService executorService = Executors.newFixedThreadPool(5);
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 1000000; i++) {
                 int finalI = i;
                 executorService.submit(new Runnable() {
 

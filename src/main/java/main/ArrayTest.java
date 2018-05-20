@@ -1,7 +1,6 @@
 package main;
 
-import main.EffectiveTest.ClassTest;
-import org.apache.flink.hadoop.shaded.com.google.common.collect.Maps;
+import com.google.common.collect.Maps;
 
 import java.util.Map;
 import java.util.Random;

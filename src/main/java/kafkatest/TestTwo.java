@@ -46,8 +46,12 @@ public class TestTwo {
 
         String broker_db180 = "db-180.photo.163.org:9092,db-180.photo.163.org:9093,db-180.photo.163.org:9094" ;
 
+        String test_broker = "db-180.photo.163.org:9092";
+
+        String kafka_kaola = "datastream0.hz.163.org:9092,datastream1.hz.163.org:9092";
+
         Properties properties = new Properties();
-        properties.put("metadata.broker.list",broker_lt);
+        properties.put("metadata.broker.list", kafka_kaola);
 
         properties.put("serializer.class","kafka.serializer.StringEncoder");
         properties.put("key.serializer.class" , "kakfa.serializer.StringEncoder");
@@ -64,7 +68,7 @@ public class TestTwo {
 
         KafkaConsumer<String,String> kafkaConsumer = new KafkaConsumer<String, String>(properties);
 
-        TopicPartition topicPartition = new TopicPartition("datastream.-_-.nim_online_app.1",3);
+        //TopicPartition topicPartition = new TopicPartition("datastream.-_-.kaola_appalarm_log_online",3);
         //kafkaConsumer.assign(Lists.<TopicPartition>newArrayList(topicPartition));
         //kafkaConsumer.seek(topicPartition,100);
         kafkaConsumer.subscribe(Lists.<String>newArrayList("datastream.-_-.nim_online_app.1"));
@@ -73,10 +77,17 @@ public class TestTwo {
         System.out.println(kafkaConsumer.assignment());
         System.out.println(kafkaConsumer.subscription());
 
+        List<PartitionInfo> list = kafkaConsumer.partitionsFor("datastream.-_-.kaola_appalarm_log_online");
+//        for (PartitionInfo partitionInfo : kafkaConsumer.partitionsFor("datastream.-_-.kaola_appalarm_log_online")){
+//            System.out.print(partitionInfo.toString());
+//
+//            kafkaConsumer.seekToBeginning(new TopicPartition("datastream.-_-.kaola_appalarm_log_online", ));
+//        }
 
-        for (PartitionInfo partitionInfo : kafkaConsumer.partitionsFor("datastream.-_-.nim_online_app.1")){
-            System.out.print(partitionInfo.toString());
+        for (int i = 0; i < list.size(); i++) {
+            kafkaConsumer.seekToBeginning(new TopicPartition("datastream.-_-.kaola_appalarm_log_online", i));
         }
+
 
         while(true){
             ConsumerRecords<String,String> records = kafkaConsumer.poll(1);
@@ -88,6 +99,9 @@ public class TestTwo {
             if (records != null) {
                 for (ConsumerRecord<String, String> record : records) {
                     //System.out.println(record.value());
+
+                    System.out.println(record.value());
+                    /**
                     if (record.value().contains("\\\"sid\\\":2") && (record.value().contains("\\\"cid\\\":2") || record.value().contains("\\\"cid\\\":3") || record.value().contains("\\\"cid\\\":6") )) {
                         System.out.println(record.value());
 
@@ -111,7 +125,7 @@ public class TestTwo {
                         }
 
 
-                    }
+                    }*/
 
                     /**
                     System.out.println("partition=" + record.partition());

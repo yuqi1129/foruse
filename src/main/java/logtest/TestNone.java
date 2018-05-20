@@ -7,6 +7,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
 import java.io.File;
 import java.util.concurrent.ExecutorService;
@@ -30,49 +31,52 @@ public class TestNone {
     private static final Logger errorLog = LoggerFactory.getLogger("myerror");
     private static final Logger infoLog = LoggerFactory.getLogger("myinfo");
     private static final Logger LOGGER = LoggerFactory.getLogger(TestNone.class);
+    private static final Logger testLog = LoggerFactory.getLogger("test");
 
     public static void main(String [] args) {
         //
-//        errorLog.error("we get error");
-//        infoLog.info("we get a info,haha ");
-//        LOGGER.info("get info");
-//        LOGGER.error("get error");
-//        LOGGER.info("{}", "haha" + System.currentTimeMillis());
+        errorLog.error("we get error");
+        infoLog.info("we get a info,haha ");
+        LOGGER.info("get info");
+        LOGGER.error("get error");
+        LOGGER.info("{}", "haha" + System.currentTimeMillis());
 
 
         //ExecutorService executorService = Executors.newFixedThreadPool(10);
-//
-//        ThreadPoolExecutor executorService = new ThreadPoolExecutor(10, 10, 100, TimeUnit.SECONDS, new LinkedBlockingQueue<>(100), new ThreadFactoryBuilder().setNameFormat("%d").build(), new ThreadPoolExecutor.CallerRunsPolicy());
-//
-//        for (int i = 0; i < 10; i++) {
-//            final int j = i;
-//            executorService.submit(new Runnable() {
-//                @Override
-//                public void run() {
-//                    try {
-//                        synchronized (TestNone.class) {
-//                            File oldFile = new File("info.log");
-//                            String before = FileUtils.readFileToString(oldFile);
-//
-//                            infoLog.error("{}", "haha " + j);
-//
-//                            String newFile = FileUtils.readFileToString(new File("info.log"));
-//
-//                            System.out.println(Thread.currentThread().getName() + " write \"" + newFile.substring(before.length()) + "\" to log");
-//                        }
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            });
-//        }
-//
-//        executorService.shutdown();
+
+        ThreadPoolExecutor executorService = new ThreadPoolExecutor(10, 10, 100, TimeUnit.SECONDS, new LinkedBlockingQueue<>(100), new ThreadFactoryBuilder().setNameFormat("%d").build(), new ThreadPoolExecutor.CallerRunsPolicy());
+        MDC.put("UID", "haah");
+
+        for (int i = 0; i < 10; i++) {
+            final int j = i;
+            executorService.submit(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        synchronized (TestNone.class) {
+                            File oldFile = new File("info.log");
+                            String before = FileUtils.readFileToString(oldFile);
+
+                            infoLog.error("{}", "haha " + j);
+                            testLog.info("good ----> good");
+
+                            String newFile = FileUtils.readFileToString(new File("info.log"));
+
+                            System.out.println(Thread.currentThread().getName() + " write \"" + newFile.substring(before.length()) + "\" to log");
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+
+        executorService.shutdown();
 
 
-        String s = "2017-09-28 19:39:34,458 11735753 [173.362a41a6-3463-4bf1-bf97-6029eef76a28] DEBUG org.apache.flink.streaming.api.graph.StreamGraph(line-217) - Vertex: 129";
-
-        System.out.println(isDebugLog(s));
+//        String s = "2017-09-28 19:39:34,458 11735753 [173.362a41a6-3463-4bf1-bf97-6029eef76a28] DEBUG org.apache.flink.streaming.api.graph.StreamGraph(line-217) - Vertex: 129";
+//
+//        System.out.println(isDebugLog(s));
     }
 
 

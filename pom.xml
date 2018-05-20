@@ -13,15 +13,16 @@
         <top.dir>${project.basedir}</top.dir>
         <akka.version>2.4.17</akka.version>
         <scala.version>2.11.8</scala.version>
+        <flink.version>1.6-SNAPSHOT</flink.version>
     </properties>
 
     <dependencies>
 
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.31</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>mysql</groupId>-->
+            <!--<artifactId>mysql-connector-java</artifactId>-->
+            <!--<version>5.1.31</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
@@ -90,17 +91,18 @@
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
-            <version>1.0.0</version>
+            <version>0.9.0.1</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka-streams</artifactId>
-            <version>1.0.0</version>
-        </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>org.apache.kafka</groupId>-->
+            <!--<artifactId>kafka-streams</artifactId>-->
+            <!--<version>0.10.0.1</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka_2.11</artifactId>
-            <version>1.0.0</version>
+            <version>0.9.0.1</version>
         </dependency>
 
         <!-- for rabbit mq -->
@@ -343,19 +345,29 @@
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-connector-kafka-0.9_2.11</artifactId>
-            <version>1.2.1</version>
+            <!--<version>1.6-SNAPSHOT</version>-->
+            <version>${flink.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-core</artifactId>
-            <version>1.2.1</version>
+            <version>${flink.version}</version>
+            <!--<version>1.4.2</version>-->
         </dependency>
 
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-streaming-java_2.11</artifactId>
-            <version>1.2.1</version>
+            <version>${flink.version}</version>
+            <!--<version>1.4.2</version>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-runtime_2.11</artifactId>
+            <!--<version>1.4.2</version>-->
+            <version>${flink.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
@@ -379,11 +391,12 @@
         <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/com.oracle/ojdbc14 -->
-        <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc14</artifactId>
-            <version>10.2.0.3.0</version>
-        </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>com.oracle</groupId>-->
+            <!--<artifactId>ojdbc14</artifactId>-->
+            <!--<version>10.2.0.3.0</version>-->
+        <!--</dependency>-->
 
 
     </dependencies>
@@ -413,7 +426,7 @@
                             </filters>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>host.GetHost</mainClass>
+                                    <mainClass>flink.package7.WordCount</mainClass>
                                 </transformer>
                             </transformers>
                             <!--<minimizeJar>true</minimizeJar>-->
@@ -437,6 +450,18 @@
            要加上以上插件，才能正常运行
         -->
     </build>
+
+
+    <repositories>
+        <repository>
+            <id>bdms</id>
+            <url>http://10.172.121.163:8082/nexus/content/repositories/releases</url>
+        </repository>
+        <repository>
+            <id>netease</id>
+            <url>http://mvn.hz.netease.com/artifactory/repo</url>
+        </repository>
+    </repositories>
 
 
 </project>
