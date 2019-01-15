@@ -28,9 +28,10 @@ public class TestOne {
     public static void main(String[] args) {
         try {
 
-            ExecutorService executorService = Executors.newFixedThreadPool(5);
+            ExecutorService executorService = Executors.newFixedThreadPool(8);
             for (int i = 0; i < 1000000; i++) {
                 int finalI = i;
+
                 executorService.submit(new Runnable() {
 
                     @Override

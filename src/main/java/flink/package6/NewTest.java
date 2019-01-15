@@ -44,7 +44,7 @@ public class NewTest {
                     public void cancel() {
                         isRunning = false;
                     }
-                }).setParallelism(2).filter(new FilterFunction<Integer>() {
+                }).setParallelism(1).filter(new FilterFunction<Integer>() {
                     @Override
                     public boolean filter(Integer integer) throws Exception {
                         return integer != null;
@@ -79,7 +79,7 @@ public class NewTest {
                     public void flatMap(Integer integer, Collector<Integer> collector) throws Exception {
                         collector.collect(integer * 10 + 1);
                     }
-                }).setParallelism(3);
+                }).setParallelism(1);
         dataStream.print();
 
         try {

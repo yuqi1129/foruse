@@ -13,7 +13,7 @@
         <top.dir>${project.basedir}</top.dir>
         <akka.version>2.4.17</akka.version>
         <scala.version>2.11.8</scala.version>
-        <flink.version>1.6-SNAPSHOT</flink.version>
+        <flink.version>1.6.0</flink.version>
     </properties>
 
     <dependencies>
@@ -384,6 +384,15 @@
             <version>5.0.1</version>
         </dependency>
 
+
+        <!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>4.3</version>
+        </dependency>
+
+
         <!--<dependency>-->
             <!--<groupId>org.apache.curator</groupId>-->
             <!--<artifactId>curator-recipes</artifactId>-->
@@ -452,16 +461,16 @@
     </build>
 
 
-    <repositories>
-        <repository>
-            <id>bdms</id>
-            <url>http://10.172.121.163:8082/nexus/content/repositories/releases</url>
-        </repository>
-        <repository>
-            <id>netease</id>
-            <url>http://mvn.hz.netease.com/artifactory/repo</url>
-        </repository>
-    </repositories>
+    <!--<repositories>-->
+        <!--<repository>-->
+            <!--<id>bdms</id>-->
+            <!--<url>http://10.172.121.163:8082/nexus/content/repositories/releases</url>-->
+        <!--</repository>-->
+        <!--<repository>-->
+            <!--<id>netease</id>-->
+            <!--<url>http://mvn.hz.netease.com/artifactory/repo</url>-->
+        <!--</repository>-->
+    <!--</repositories>-->
 
 
 </project>
